@@ -1,27 +1,43 @@
 package fiuba.algo3.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import fiuba.algo3.Contratos.IDesgaste;
+import fiuba.algo3.Contratos.IHerramienta;
+import fiuba.algo3.Contratos.IMaterial;
 
-public class Hacha  {
+public class Hacha implements IHerramienta {
 
-    public static void main(String[] args) {
-        System.out.println("Foo bye");
+    private int fuerza = 0;
+    private IDesgaste desgaste;
+
+    public Hacha(Madera material) {
+        this.desgaste = new DesgasteRapido(100);
+        this.fuerza = 2;
     }
 
-    public Hacha(Madera madera) {
-
+    public Hacha(Metal material) {
+        //this.durabilidad = 400;
+        this.desgaste = new DesgasteLento(400);
+        this.fuerza = 10;
     }
 
-    public Hacha(Piedra piedra) {
-
+    @Override
+    public int obtenerDurabilidad() {
+        return this.desgaste.obtenerDurabilidad();
     }
 
-    public Hacha(Piedra piedra) {
-
+    @Override
+    public int obtenerFuerza() {
+        return this.fuerza;
     }
 
-    public Hacha(Diamante diamante) {
+    @Override
+    public void usarContra(IMaterial material) {
+        material.chocarContra(this);
+        this.desgaste.desgastar(this.fuerza);
+    }
 
+    @Override
+    public int calcularDanio(Madera madera) {
+        return this.fuerza;
     }
 }
