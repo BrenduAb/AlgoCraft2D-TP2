@@ -13,7 +13,12 @@ public class Madera implements IMaterial {
     }
 
     @Override
-    public void chocharContra(Pico pico) {
+    public void chocarContra(Pico pico) {
+
+    }
+
+    @Override
+    public void chocarContra(PicoFino picoFino) {
 
     }
 

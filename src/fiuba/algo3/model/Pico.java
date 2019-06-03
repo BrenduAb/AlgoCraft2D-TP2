@@ -6,7 +6,12 @@ import fiuba.algo3.Contratos.IMaterial;
 public class Pico implements IHerramienta {
 
     public Pico(Metal metal){
+    }
 
+    public Pico(Madera madera) {
+    }
+
+    public Pico(Piedra piedra) {
     }
 
     @Override

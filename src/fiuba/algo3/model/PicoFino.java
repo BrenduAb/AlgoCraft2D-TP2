@@ -4,28 +4,18 @@ import fiuba.algo3.Contratos.IDesgaste;
 import fiuba.algo3.Contratos.IHerramienta;
 import fiuba.algo3.Contratos.IMaterial;
 
-public class Hacha implements IHerramienta {
-
-    private int fuerza = 0;
+public class PicoFino implements IHerramienta {
     private IDesgaste desgaste;
+    private int fuerza;
 
-    public Hacha(Madera material) {
-        this.desgaste = new DesgasteRapido(100);
-        this.fuerza = 2;
-    }
-
-    public Hacha(Metal material) {
-        //this.durabilidad = 400;
-        this.desgaste = new DesgasteLento(400);
-        this.fuerza = 10;
-    }
-
-    public Hacha(Piedra material) {
+    public PicoFino(Metal metal, Piedra piedra) {
+        this.desgaste = new DesgasteMinimo();
+        this.fuerza = 20;
     }
 
     @Override
     public int obtenerDurabilidad() {
-        return this.desgaste.obtenerDurabilidad();
+        return desgaste.obtenerDurabilidad();
     }
 
     @Override
@@ -35,7 +25,6 @@ public class Hacha implements IHerramienta {
 
     @Override
     public void usarContra(IMaterial material) {
-        material.chocarContra(this);
         this.desgaste.desgastar(this.fuerza);
     }
 
