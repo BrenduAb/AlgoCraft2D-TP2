@@ -1,10 +1,8 @@
 package fiuba.algo3.model;
 
-import fiuba.algo3.Contratos.IDesgaste;
-import fiuba.algo3.Contratos.IHerramienta;
-import fiuba.algo3.Contratos.IMaterial;
+import fiuba.algo3.Contratos.*;
 
-public class Hacha implements IHerramienta {
+public class Hacha implements IHerramienta, IGuardable {
 
     private int fuerza = 0;
     private IDesgaste desgaste;
@@ -39,5 +37,15 @@ public class Hacha implements IHerramienta {
     @Override
     public int calcularDanio(Madera madera) {
         return this.fuerza;
+    }
+
+    @Override
+    public void guardarEnInventario(Jugador jugador) {
+        jugador.guardarEnInventario(this);
+    }
+
+    public boolean esIgual(IHerramienta herramienta){
+        return (fuerza == herramienta.obtenerFuerza())&&
+                (obtenerDurabilidad() == herramienta.obtenerDurabilidad());
     }
 }

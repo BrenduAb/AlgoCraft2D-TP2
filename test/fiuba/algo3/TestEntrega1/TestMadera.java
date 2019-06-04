@@ -10,6 +10,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 public class TestMadera {
+
     @Test
     public void maderaChocaContraHachaDeMaderaYPierde2deDurabilidad(){
         Madera madera = new Madera();
