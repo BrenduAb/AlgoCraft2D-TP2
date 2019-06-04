@@ -2,13 +2,10 @@ package fiuba.algo3.model;
 
 import fiuba.algo3.Contratos.IGuardable;
 import fiuba.algo3.Contratos.IHerramienta;
+import fiuba.algo3.model.Herramientas.Hacha;
+import fiuba.algo3.model.Materiales.Madera;
 
-import javax.swing.*;
-import java.awt.*;
-import java.text.CollationElementIterator;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 public class Inventario {
     ArrayList<IGuardable> objetosDelInventario;

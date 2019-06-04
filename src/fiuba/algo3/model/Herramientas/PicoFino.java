@@ -1,8 +1,11 @@
-package fiuba.algo3.model;
+package fiuba.algo3.model.Herramientas;
 
 import fiuba.algo3.Contratos.IDesgaste;
 import fiuba.algo3.Contratos.IHerramienta;
 import fiuba.algo3.Contratos.IMaterial;
+import fiuba.algo3.model.Materiales.Madera;
+import fiuba.algo3.model.Materiales.Metal;
+import fiuba.algo3.model.Materiales.Piedra;
 
 public class PicoFino implements IHerramienta {
     private IDesgaste desgaste;

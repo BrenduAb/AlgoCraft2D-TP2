@@ -2,6 +2,8 @@ package fiuba.algo3.model;
 
 import fiuba.algo3.Contratos.IGuardable;
 import fiuba.algo3.Contratos.IHerramienta;
+import fiuba.algo3.model.Herramientas.Hacha;
+import fiuba.algo3.model.Materiales.Madera;
 
 public class Jugador {
 

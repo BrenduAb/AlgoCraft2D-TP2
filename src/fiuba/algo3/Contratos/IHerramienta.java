@@ -1,8 +1,8 @@
 package fiuba.algo3.Contratos;
 
-import fiuba.algo3.model.Madera;
-import fiuba.algo3.model.Metal;
-import fiuba.algo3.model.Piedra;
+import fiuba.algo3.model.Materiales.Madera;
+import fiuba.algo3.model.Materiales.Metal;
+import fiuba.algo3.model.Materiales.Piedra;
 
 public interface IHerramienta{
     public  int obtenerDurabilidad();

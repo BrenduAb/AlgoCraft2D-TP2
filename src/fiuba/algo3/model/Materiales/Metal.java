@@ -1,6 +1,9 @@
-package fiuba.algo3.model;
+package fiuba.algo3.model.Materiales;
 
 import fiuba.algo3.Contratos.IMaterial;
+import fiuba.algo3.model.Herramientas.Hacha;
+import fiuba.algo3.model.Herramientas.Pico;
+import fiuba.algo3.model.Herramientas.PicoFino;
 
 public class Metal implements IMaterial {
     public int durabilidad = 50;

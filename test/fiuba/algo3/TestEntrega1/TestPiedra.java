@@ -1,11 +1,8 @@
 package fiuba.algo3.TestEntrega1;
 
-import com.sun.java.swing.plaf.motif.MotifTextAreaUI;
-import fiuba.algo3.Contratos.IHerramienta;
-import fiuba.algo3.model.Hacha;
-import fiuba.algo3.model.Madera;
-import fiuba.algo3.model.Metal;
-import fiuba.algo3.model.Piedra;
+import fiuba.algo3.model.Herramientas.Hacha;
+import fiuba.algo3.model.Materiales.Madera;
+import fiuba.algo3.model.Materiales.Piedra;
 import junit.framework.Assert;
 import org.junit.Test;
 

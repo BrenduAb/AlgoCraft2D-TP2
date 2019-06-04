@@ -1,4 +1,4 @@
-package fiuba.algo3.model;
+package fiuba.algo3.model.Herramientas;
 
 import fiuba.algo3.Contratos.IDesgaste;
 
