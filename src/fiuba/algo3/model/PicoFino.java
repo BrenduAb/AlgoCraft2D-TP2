@@ -1,42 +1,36 @@
 package fiuba.algo3.model;
 
+import fiuba.algo3.Contratos.IDesgaste;
 import fiuba.algo3.Contratos.IHerramienta;
 import fiuba.algo3.Contratos.IMaterial;
 
-public class Pico implements IHerramienta {
+public class PicoFino implements IHerramienta {
+    private IDesgaste desgaste;
+    private int fuerza;
 
-    private IMaterial material;
-
-    public Pico(Metal metal){
-        this.material = metal;
-    }
-
-    public Pico(Madera madera) {
-    this.material = madera;
-    }
-
-
-    public Pico(Piedra piedra) {
-        this.material = piedra;
+    public PicoFino(Metal metal, Piedra piedra) {
+        this.desgaste = new DesgasteMinimo();
+        this.fuerza = 20;
     }
 
     @Override
     public int obtenerDurabilidad() {
-        return 0;
+        return desgaste.obtenerDurabilidad();
     }
 
     @Override
     public int obtenerFuerza() {
-        return 0;
+        return this.fuerza;
     }
 
     @Override
     public void usarContra(IMaterial material) {
+        this.desgaste.desgastar(this.fuerza);
     }
 
     @Override
     public int calcularDanio(Madera madera) {
-        return 0;
+        return this.fuerza;
     }
 
     @Override
@@ -46,9 +40,6 @@ public class Pico implements IHerramienta {
 
     @Override
     public int calcularDanio(Metal piedra) {
-        if(this.material.getClass() == Piedra.class){
-            return 4;
-        }
         return 0;
     }
 }

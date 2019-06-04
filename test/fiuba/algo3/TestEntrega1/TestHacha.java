@@ -26,7 +26,7 @@ public class TestHacha {
     }
 
     @Test
-    public void crearHachadeMetalConDurabilidadInicial100yFuerzaInicial2(){
+    public void crearHachadeMetalConDurabilidadInicia400yFuerzaInicial0(){
         Metal metal = new Metal();
 
         IHerramienta hacha = new Hacha(metal);
