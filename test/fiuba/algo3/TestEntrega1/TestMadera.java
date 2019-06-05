@@ -1,4 +1,4 @@
-package fiuba.algo3.TestEntrega1;
+/*package fiuba.algo3.TestEntrega1;
 
 import fiuba.algo3.model.Herramientas.Hacha;
 import fiuba.algo3.model.Materiales.Madera;
@@ -86,3 +86,4 @@ public class TestMadera {
                 madera.obtenerDurabilidad());
     }
 }
+*/

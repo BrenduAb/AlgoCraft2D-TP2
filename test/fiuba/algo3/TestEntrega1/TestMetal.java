@@ -1,4 +1,4 @@
-package fiuba.algo3.TestEntrega1;
+/*package fiuba.algo3.TestEntrega1;
 
 import fiuba.algo3.model.Herramientas.Hacha;
 import fiuba.algo3.model.Herramientas.Pico;
@@ -126,3 +126,4 @@ public class TestMetal {
         Assert.assertEquals(durabilidadInicial, metal.obtenerDurabilidad());
     }
 }
+*/

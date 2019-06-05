@@ -1,66 +1,31 @@
 package fiuba.algo3.model.Herramientas;
 
-import fiuba.algo3.Contratos.IDanioTipoMaterial;
-import fiuba.algo3.Contratos.IHerramienta;
-import fiuba.algo3.Contratos.IMaterial;
-import fiuba.algo3.model.DanioTipoMaterial.DanioMadera;
-import fiuba.algo3.model.DanioTipoMaterial.DanioMetal;
-import fiuba.algo3.model.DanioTipoMaterial.DanioPiedra;
 import fiuba.algo3.model.Materiales.Madera;
-import fiuba.algo3.model.Materiales.Metal;
 import fiuba.algo3.model.Materiales.Piedra;
 
-public class Pico implements IHerramienta {
-
-    private IMaterial material;
-    private IDanioTipoMaterial danio;
-    private int fuerza = 0;
-
-    public Pico(Metal metal){
-        this.material = metal;
-        this.danio = new DanioMetal();
-        this.fuerza = 12;
+public class Pico extends Herramienta {
+    public Pico(Madera material){
+        this.material = material;
+        this.durabilidad = 100;
     }
 
-    public Pico(Madera madera) {
-        this.material = madera;
-        this.danio = new DanioMadera();
-        this.fuerza = 2;
-    }
-
-
-    public Pico(Piedra piedra) {
-        this.material = piedra;
-        this.danio = new DanioPiedra();
-        this.fuerza = 4;
+    public Pico(Piedra material){
+        this.material = material;
+        this.durabilidad = 200;
     }
 
     @Override
-    public int obtenerDurabilidad() {
-        return 0;
+    public void usarContra(Madera materialARecolectar) {
+        material.chocarContra(this, materialARecolectar);
     }
 
     @Override
-    public int obtenerFuerza() {
-        return this.fuerza;
+    public void usarContra(Piedra materialARecolectar) {
+        material.chocarContra(this, materialARecolectar);
     }
 
     @Override
-    public void usarContra(IMaterial material) {
-    }
-
-    @Override
-    public int calcularDanio(Madera madera) {
-        return 0;
-    }
-
-    @Override
-    public int calcularDanio(Piedra piedra) {
-        return danio.obtenerDanio(this);
-    }
-
-    @Override
-    public int calcularDanio(Metal metal) {
-        return danio.obtenerDanio(this);
+    public void desgastar(int danio) {
+        durabilidad -= danio;
     }
 }

@@ -1,4 +1,4 @@
-package fiuba.algo3.TestEntrega1;
+/*package fiuba.algo3.TestEntrega1;
 
 import fiuba.algo3.model.*;
 import fiuba.algo3.model.Herramientas.Hacha;
@@ -25,3 +25,4 @@ public class TestJugador {
         Assert.assertEquals(true, hacha.esIgual(jugador.herramientaSeleccionada()));
     }
 }
+*/

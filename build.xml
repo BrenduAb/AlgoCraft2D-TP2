@@ -40,7 +40,7 @@
 
 	<path id="pmd.classpath">
 		<fileset dir="${pmd.dir}">
-			<include name="*.jar" />
+			<include name="*.jar" /><
 		</fileset>
 	</path>
 	

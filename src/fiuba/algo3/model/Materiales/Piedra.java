@@ -1,30 +1,41 @@
 package fiuba.algo3.model.Materiales;
 
-import fiuba.algo3.Contratos.IMaterial;
 import fiuba.algo3.model.Herramientas.Hacha;
 import fiuba.algo3.model.Herramientas.Pico;
-import fiuba.algo3.model.Herramientas.PicoFino;
 
-public class Piedra implements IMaterial {
+public class Piedra extends Material {
 
-    public int durabilidad = 30;
-
-
-    @Override
-    public void chocarContra(Hacha hacha) {
+    public Piedra(){
+        this.durabilidad = 30;
     }
 
     @Override
-    public void chocarContra(Pico pico) {
-        this.durabilidad -= pico.calcularDanio(this);
+    public void chocarContra(Hacha hacha, Madera madera) {
+
     }
 
     @Override
-    public void chocarContra(PicoFino picoFino) {
+    public void chocarContra(Hacha hacha, Piedra piedra) {
+
     }
 
     @Override
-    public int obtenerDurabilidad() {
-        return this.durabilidad;
+    public void chocarContra(Hacha hacha, Metal metal) {
+
+    }
+
+    @Override
+    public void chocarContra(Pico pico, Madera Madera) {
+
+    }
+
+    @Override
+    public void chocarContra(Pico pico, Piedra piedra) {
+
+    }
+
+    @Override
+    public void chocarContra(Pico pico, Metal metal) {
+
     }
 }

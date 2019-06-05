@@ -1,4 +1,4 @@
-package fiuba.algo3.TestEntrega1;
+/*package fiuba.algo3.TestEntrega1;
 
 import fiuba.algo3.model.Herramientas.Hacha;
 import fiuba.algo3.model.Inventario;
@@ -23,3 +23,4 @@ public class TestInventario {
         Assert.assertEquals(1, inventario.obtenerCantidadDeObjetos());
     }
 }
+*/
