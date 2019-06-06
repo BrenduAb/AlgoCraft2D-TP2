@@ -1,4 +1,5 @@
-package fiuba.algo3.TestEntrega1;
+/*package fiuba.algo3.TestEntrega1;
+
 
 import fiuba.algo3.model.Herramientas.Hacha;
 import fiuba.algo3.model.Herramientas.Herramienta;
@@ -36,7 +37,7 @@ public class TestHacha {
         Assert.assertEquals(durabilidadHachaMetalInicial, durabilidad);
         Assert.assertEquals(fuerzaHachaMetalInicial, fuerza);
     }
-*/
+
     @Test
     public void usoHachaMaderaContraUnMaterialYbajaSuDurabilidad(){
         Madera madera = new Madera();
@@ -62,3 +63,4 @@ public class TestHacha {
 
 }
 
+*/
