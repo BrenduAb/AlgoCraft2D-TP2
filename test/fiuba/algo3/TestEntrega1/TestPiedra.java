@@ -2,6 +2,7 @@ package fiuba.algo3.TestEntrega1;
 
 import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Herramientas.Hacha;
+import fiuba.algo3.model.Herramientas.Pico;
 import fiuba.algo3.model.Materiales.Madera;
 import fiuba.algo3.model.Materiales.Piedra;
 import junit.framework.Assert;
@@ -16,6 +17,16 @@ public class TestPiedra {
         Assert.assertEquals(30,piedra.obtenerDurabilidad());
     }
 
+    @Test
+    public void piedraChocaConUnPicoYSeReduceSuDurabilidad(){
+        Pico pico = ConstructorHerramientas.construirPicoDeMadera();
+        Piedra piedra = new Piedra();
+
+        int durabilidadInicial = piedra.obtenerDurabilidad();
+        pico.usarContra(piedra);
+
+        Assert.assertEquals(durabilidadInicial -2, piedra.obtenerDurabilidad());
+    }
 
     @Test
     public void piedraChocaConUnHachaYNoSeReduceSuDurabilidad(){
