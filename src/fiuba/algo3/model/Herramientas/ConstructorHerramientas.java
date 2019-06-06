@@ -1,9 +1,5 @@
 package fiuba.algo3.model.Herramientas;
-
-import fiuba.algo3.model.Durabilidad.Desgaste;
-import fiuba.algo3.model.Durabilidad.DesgasteMedio;
-import fiuba.algo3.model.Durabilidad.DesgasteLento;
-import fiuba.algo3.model.Durabilidad.DesgasteRapido;
+import fiuba.algo3.model.Durabilidad.*;
 import fiuba.algo3.model.Golpe.*;
 
 public class ConstructorHerramientas {
