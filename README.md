@@ -5,7 +5,7 @@ Trabajo Practico N°2 de la materia Algoritmos y Programación III en FIUBA
 Ejemplo                                                                                                                                                                 
 ==========
 
-[![Build Status](https://nicopaez.ci.cloudbees.com/view/Algo3/job/proyecto-base-aglo3/badge/icon)](https://nicopaez.ci.cloudbees.com/view/Algo3/job/proyecto-base-aglo3/)
+[![Build Status](https://travis-ci.org/BrenduAb/AlgoCraft2D-TP2.svg?branch=master)](https://travis-ci.org/BrenduAb/AlgoCraft2D-TP2)
 
 Este proyecto es un simple ejemplo que muestra un proyecto base en Java para la material Algo3.
 
