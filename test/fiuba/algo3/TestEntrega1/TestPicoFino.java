@@ -1,7 +1,10 @@
-package fiuba.algo3.TestEntrega1;
+/*package fiuba.algo3.TestEntrega1;
 
-import fiuba.algo3.Contratos.IHerramienta;
-import fiuba.algo3.model.*;
+import fiuba.algo3.model.Herramientas.PicoFino;
+import fiuba.algo3.model.Materiales.Diamante;
+import fiuba.algo3.model.Materiales.Madera;
+import fiuba.algo3.model.Materiales.Metal;
+import fiuba.algo3.model.Materiales.Piedra;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -75,3 +78,4 @@ public class TestPicoFino {
         Assert.assertEquals(durabilidadPicoFino - 100, picoFino.obtenerDurabilidad());
     }
 }
+*/

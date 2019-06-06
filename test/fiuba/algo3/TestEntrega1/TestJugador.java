@@ -1,8 +1,8 @@
-package fiuba.algo3.TestEntrega1;
+/*package fiuba.algo3.TestEntrega1;
 
-import com.sun.java.swing.plaf.motif.MotifTextAreaUI;
-import fiuba.algo3.Contratos.IHerramienta;
 import fiuba.algo3.model.*;
+import fiuba.algo3.model.Herramientas.Hacha;
+import fiuba.algo3.model.Materiales.Madera;
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -25,3 +25,4 @@ public class TestJugador {
         Assert.assertEquals(true, hacha.esIgual(jugador.herramientaSeleccionada()));
     }
 }
+*/

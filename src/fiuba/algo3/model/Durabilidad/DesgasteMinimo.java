@@ -1,13 +1,8 @@
-package fiuba.algo3.model;
+package fiuba.algo3.model.Durabilidad;
 
-import fiuba.algo3.Contratos.IDesgaste;
-
-public class DesgasteMinimo implements IDesgaste {
-    private int durabilidad = 1000;
-
-    @Override
-    public int obtenerDurabilidad() {
-        return this.durabilidad;
+public class DesgasteMinimo extends Desgaste {
+    public DesgasteMinimo(int durabilidad) {
+        super(durabilidad);
     }
 
     //Aca no se usa la fuerza que le paso por parametro y no me deja agregarle un metodo propio,

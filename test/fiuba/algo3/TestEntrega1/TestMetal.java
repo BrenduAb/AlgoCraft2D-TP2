@@ -1,6 +1,11 @@
-package fiuba.algo3.TestEntrega1;
+/*package fiuba.algo3.TestEntrega1;
 
-import fiuba.algo3.model.*;
+import fiuba.algo3.model.Herramientas.Hacha;
+import fiuba.algo3.model.Herramientas.Pico;
+import fiuba.algo3.model.Herramientas.PicoFino;
+import fiuba.algo3.model.Materiales.Madera;
+import fiuba.algo3.model.Materiales.Metal;
+import fiuba.algo3.model.Materiales.Piedra;
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -121,3 +126,4 @@ public class TestMetal {
         Assert.assertEquals(durabilidadInicial, metal.obtenerDurabilidad());
     }
 }
+*/
