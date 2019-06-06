@@ -1,5 +1,4 @@
 package fiuba.algo3.model.Herramientas;
-
 import fiuba.algo3.model.Durabilidad.*;
 import fiuba.algo3.model.Golpe.*;
 
@@ -43,6 +42,13 @@ public class ConstructorHerramientas {
         Golpe golpeDeHacha = new GolpeHacha(10);
         Desgaste desgaste = new DesgasteLento(400);
         Hacha hacha = new Hacha(desgaste,golpeDeHacha);
+        return hacha;
+    }
+
+    public static PicoFino construirPicoFino(){
+        Golpe golpePicoFino = new GolpeHacha(20);
+        Desgaste desgaste = new DesgasteMinimo(1000);
+        PicoFino hacha = new PicoFino(desgaste,golpePicoFino);
         return hacha;
     }
 
