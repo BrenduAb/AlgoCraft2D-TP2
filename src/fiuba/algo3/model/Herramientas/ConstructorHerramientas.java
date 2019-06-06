@@ -45,4 +45,11 @@ public class ConstructorHerramientas {
         return hacha;
     }
 
+    public static PicoFino construirPicoFino(){
+        Golpe golpePicoFino = new GolpeHacha(20);
+        Desgaste desgaste = new DesgasteMinimo(1000);
+        PicoFino hacha = new PicoFino(desgaste,golpePicoFino);
+        return hacha;
+    }
+
 }
