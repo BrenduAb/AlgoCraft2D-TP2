@@ -1,4 +1,6 @@
-/*package fiuba.algo3.TestEntrega1;
+package fiuba.algo3.TestEntrega1;
+
+import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 
 import fiuba.algo3.model.Herramientas.PicoFino;
 import fiuba.algo3.model.Materiales.Diamante;
@@ -12,9 +14,7 @@ public class TestPicoFino {
 
     @Test
     public void testSeCreaCorrectamentePicoFinoConSuDurabilidadYFuerzaCorrespondiente(){
-        Metal metal = new Metal();
-        Piedra piedra = new Piedra();
-        IHerramienta picoFino = new PicoFino(metal, piedra);
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
 
         int durabilidadPicoFino = 1000;
         int fuerzaPicoFino = 20;
@@ -27,9 +27,7 @@ public class TestPicoFino {
     @Test
     public void testPicoFinoSeUsaContraMaderaYSeDesgastaSuDurabilidad(){
         Madera madera = new Madera();
-        Metal metal = new Metal();
-        Piedra piedra = new Piedra();
-        IHerramienta picoFino = new PicoFino(metal, piedra);
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
 
         int durabilidadPicoFino = picoFino.obtenerDurabilidad();
 
@@ -40,9 +38,8 @@ public class TestPicoFino {
 
     @Test
     public void testPicoFinoSeUsaContraPiedraYSeDesgastaSuDurabilidad(){
-        Metal metal = new Metal();
         Piedra piedra = new Piedra();
-        IHerramienta picoFino = new PicoFino(metal, piedra);
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
 
         int durabilidadPicoFino = picoFino.obtenerDurabilidad();
 
@@ -54,8 +51,7 @@ public class TestPicoFino {
     @Test
     public void testPicoFinoSeUsaContraMetalYSeDesgastaSuDurabilidad(){
         Metal metal = new Metal();
-        Piedra piedra = new Piedra();
-        IHerramienta picoFino = new PicoFino(metal, piedra);
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
 
         int durabilidadPicoFino = picoFino.obtenerDurabilidad();
 
@@ -66,10 +62,8 @@ public class TestPicoFino {
 
     @Test
     public void testPicoFinoSeUsaContraDiamanteYSeDesgastaSuDurabilidad(){
-        Metal metal = new Metal();
-        Piedra piedra = new Piedra();
         Diamante diamante = new Diamante();
-        IHerramienta picoFino = new PicoFino(metal, piedra);
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
 
         int durabilidadPicoFino = picoFino.obtenerDurabilidad();
 
@@ -77,5 +71,54 @@ public class TestPicoFino {
 
         Assert.assertEquals(durabilidadPicoFino - 100, picoFino.obtenerDurabilidad());
     }
+
+    @Test
+    public void testPicoFinoSeUsaContraMaderaYLaMaderaNoSeDesgasta(){
+        Madera madera = new Madera();
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+
+        int durabilidadMadera= madera.obtenerDurabilidad();
+
+        picoFino.usarContra(madera);
+
+        Assert.assertEquals(durabilidadMadera, madera.obtenerDurabilidad());
+    }
+
+    @Test
+    public void testPicoFinoSeUsaContraPiedraYLaPiedraNoSeDesgasta(){
+        Piedra piedra = new Piedra();
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+
+        int durabilidadPiedra = piedra.obtenerDurabilidad();
+
+        picoFino.usarContra(piedra);
+
+        Assert.assertEquals(durabilidadPiedra, piedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void testPicoFinoSeUsaContraMetalYElMetalNoSeDesgasta(){
+        Metal metal = new Metal();
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+
+        int durabilidadMetal = metal.obtenerDurabilidad();
+
+        picoFino.usarContra(metal);
+
+        Assert.assertEquals(durabilidadMetal, metal.obtenerDurabilidad());
+    }
+
+    @Test
+    public void testPicoFinoSeUsaContraDiamanteYSeDesgastaLaDurabilidadDelDiamante(){
+        Diamante diamante = new Diamante();
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+
+        int durabilidadDiamante = diamante.obtenerDurabilidad();
+
+        picoFino.usarContra(diamante);
+
+        Assert.assertEquals(durabilidadDiamante - 20, diamante.obtenerDurabilidad());
+    }
 }
-*/
+
+

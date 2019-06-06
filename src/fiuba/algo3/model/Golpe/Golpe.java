@@ -1,10 +1,7 @@
 package fiuba.algo3.model.Golpe;
 
 import fiuba.algo3.model.Herramientas.Herramienta;
-import fiuba.algo3.model.Materiales.Madera;
-import fiuba.algo3.model.Materiales.Material;
-import fiuba.algo3.model.Materiales.Metal;
-import fiuba.algo3.model.Materiales.Piedra;
+import fiuba.algo3.model.Materiales.*;
 
 public abstract class Golpe {
     int fuerza;
@@ -29,6 +26,10 @@ public abstract class Golpe {
 
     }
     public  void golpear(Metal metal){
+
+    }
+
+    public void golpear(Diamante diamante){
 
     }
 }
