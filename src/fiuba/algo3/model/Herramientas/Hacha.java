@@ -14,11 +14,9 @@ public class Hacha extends Herramienta {
 
     @Override
     public void usarContra(Material materialARecolectar) {
-
+        this.golpe.golpear(materialARecolectar,this);
     }
 
     @Override
-    public void desgastar(int danio) {
-
-    }
+    public void desgastar(int danio) { this.desgaste.desgastar(danio); }
 }
