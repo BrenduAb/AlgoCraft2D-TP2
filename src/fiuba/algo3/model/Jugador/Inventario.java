@@ -1,7 +1,6 @@
 package fiuba.algo3.model.Jugador;
 
-import fiuba.algo3.model.IGuardable;
-import fiuba.algo3.model.Materiales.Material;
+import fiuba.algo3.model.Contratos.IGuardable;
 
 import java.util.ArrayList;
 import java.util.List;
