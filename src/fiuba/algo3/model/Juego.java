@@ -9,7 +9,7 @@ public class Juego {
     private Jugador jugador = new Jugador();
 
     public Juego(){
-        Mapa mapa = Mapa.getInstance();;
+        Mapa mapa = Mapa.getInstance();
         Jugador jugador = new Jugador();
         Posicion posicionJugador = new Posicion(3,3);
 

@@ -1,24 +1,20 @@
 package fiuba.algo3.model.Mapa;
 
-import fiuba.algo3.Excepciones.CeldaOcupadaException;
 import fiuba.algo3.model.Contratos.IOcupable;
 
 public class Celda {
-    IOcupable ocupable = null;
 
-    public void ocupar(IOcupable nuevoOcupable){
-        if(ocupable != null){
-            throw new CeldaOcupadaException();
-        }
+    EstadoCelda estadoCelda = new CeldaLibre(null);
 
-        this.ocupable = nuevoOcupable;
+    public void ocupar(IOcupable nuevoOcupable) {
+        this.estadoCelda = this.estadoCelda.ocupar(nuevoOcupable);
     }
 
-    public void liberarCelda(){
-        this.ocupable = null;
+    public void liberarCelda() {
+        this.estadoCelda = new CeldaLibre(null);
     }
 
-    public IOcupable obtenerElemento(){
-        return this.ocupable;
+    public IOcupable obtenerElemento() {
+        return this.estadoCelda.obtenerElemento();
     }
 }
