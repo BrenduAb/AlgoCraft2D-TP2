@@ -1,10 +1,10 @@
 package fiuba.algo3.model.Materiales;
 
 import fiuba.algo3.model.Golpe.Golpeable;
-import fiuba.algo3.model.Herramientas.Hacha;
-import fiuba.algo3.model.Herramientas.Pico;
+import fiuba.algo3.model.Contratos.IOcupable;
+import fiuba.algo3.model.Mapa.Posicion;
 
-public abstract class Material implements Golpeable {
+public abstract class Material implements Golpeable, IOcupable {
     protected  int durabilidad;
 
     public void desgastar(int fuerza) {
@@ -13,5 +13,10 @@ public abstract class Material implements Golpeable {
 
     public int obtenerDurabilidad(){
         return this.durabilidad;
+    }
+
+    @Override
+    public void definirPosicion(Posicion nuevaPosicion) {
+
     }
 }

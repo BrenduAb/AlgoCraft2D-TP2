@@ -2,10 +2,8 @@ package fiuba.algo3.model.Herramientas;
 
 import fiuba.algo3.model.Durabilidad.Desgaste;
 import fiuba.algo3.model.Golpe.Golpe;
-import fiuba.algo3.model.IGuardable;
-import fiuba.algo3.model.Materiales.Madera;
+import fiuba.algo3.model.Contratos.IGuardable;
 import fiuba.algo3.model.Materiales.Material;
-import fiuba.algo3.model.Materiales.Piedra;
 
 public abstract class Herramienta implements IGuardable {
     protected Desgaste desgaste;
