@@ -12,7 +12,7 @@ public class Jugador implements IOcupable {
     Posicion posicion = null;
 
     public Jugador() {
-        IGuardable hachaMadera = ConstructorHerramientas.construirPicoDeMadera();
+        IGuardable hachaMadera = ConstructorHerramientas.construirHachaDeMadera();
         this.inventario.agregarAlInventario(hachaMadera);
     }
 

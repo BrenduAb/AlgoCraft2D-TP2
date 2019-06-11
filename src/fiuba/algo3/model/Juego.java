@@ -4,7 +4,9 @@ import fiuba.algo3.model.Jugador.Jugador;
 import fiuba.algo3.model.Mapa.Mapa;
 import fiuba.algo3.model.Mapa.Posicion;
 
-public class Juego {
+public class
+
+Juego {
 
     private Jugador jugador = new Jugador();
 
@@ -21,4 +23,6 @@ public class Juego {
     public Jugador obtenerJugador(){
         return this.jugador;
     }
+
+
 }
