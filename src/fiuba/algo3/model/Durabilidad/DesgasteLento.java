@@ -1,7 +1,5 @@
 package fiuba.algo3.model.Durabilidad;
 
-import fiuba.algo3.model.Durabilidad.Desgaste;
-
 public class DesgasteLento extends Desgaste {
 
     public DesgasteLento(int durabilidad) {
