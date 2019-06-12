@@ -11,10 +11,10 @@ Este proyecto es un simple ejemplo que muestra un proyecto base en Java para la 
 
 ## TODO list:
 
-[ ] Agregar los materiales al mapa
-[ ] Crear el Crafter
-[ ] Diagrama de seq PosicionoAlJugadorEnUnMapaYLoMuevoParaLaIzquierda
-[ ] Diagrama de seq Posicionar un IOcupable en el mapa y verificar que este
-[ ] Diagrama de seq Construir un hacha de madera en el crafter
-[ ] Diagrama de Clase: Mapa con posicion y Celda y sus referencias
-[ ] Diagrama de Clase : Herramientas
+- [ ] Agregar los materiales al mapa
+- [ ] Crear el Crafter
+- [ ] Diagrama de seq PosicionoAlJugadorEnUnMapaYLoMuevoParaLaIzquierda
+- [ ] Diagrama de seq Posicionar un IOcupable en el mapa y verificar que este
+- [ ] Diagrama de seq Construir un hacha de madera en el crafter
+- [ ] Diagrama de Clase: Mapa con posicion y Celda y sus referencias
+- [ ] Diagrama de Clase : Herramientas
