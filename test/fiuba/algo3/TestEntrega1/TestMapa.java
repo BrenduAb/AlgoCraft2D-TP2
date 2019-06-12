@@ -6,7 +6,6 @@ import fiuba.algo3.model.Jugador.Jugador;
 import fiuba.algo3.model.Mapa.Mapa;
 import fiuba.algo3.model.Mapa.Posicion;
 import fiuba.algo3.model.Materiales.Madera;
-import org.junit.Assert;
 import org.junit.Test;
 
 public class TestMapa {
