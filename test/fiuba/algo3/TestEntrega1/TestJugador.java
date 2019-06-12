@@ -20,7 +20,11 @@ public class TestJugador {
 
     @Test
     public void JugadorSeCreaConUnSoloObjetoEnSuInventario() {
-        Jugador jugador = new Jugador();
+        CleanSingleton.cleanMapa();
+
+        Mapa mapa = Mapa.getInstance();
+
+        Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
 
         int objetosDelInventario = jugador.obtenerCantidadDeObjetosDelInventario();
 
@@ -29,7 +33,11 @@ public class TestJugador {
 
     @Test
     public void JugadorSeCreaConUnHachaDeMaderaEnSuInventario() {
-        Jugador jugador = new Jugador();
+        CleanSingleton.cleanMapa();
+
+        Mapa mapa = Mapa.getInstance();
+
+        Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
 
         IGuardable hacha = ConstructorHerramientas.construirPicoDeMadera();
 
@@ -39,11 +47,10 @@ public class TestJugador {
     @Test
     public void PosicionoAlJugadorEnUnMapaYLoMuevoParaLaDeracha() {
         CleanSingleton.cleanMapa();
-        Jugador jugador = new Jugador();
 
         Mapa mapa = Mapa.getInstance();
 
-        mapa.ocuparTerreno(new Posicion(1, 1), jugador);
+        Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
 
         jugador.moverHaciaLaDerecha();
 
@@ -53,12 +60,10 @@ public class TestJugador {
     @Test
     public void PosicionoAlJugadorEnUnMapaYLoMuevoParaLaDerachaYLaCeldaAnteriorQuedaVacia() {
         CleanSingleton.cleanMapa();
-        Jugador jugador = new Jugador();
 
         Mapa mapa = Mapa.getInstance();
-        ;
 
-        mapa.ocuparTerreno(new Posicion(1, 1), jugador);
+        Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
 
         jugador.moverHaciaLaDerecha();
 
@@ -72,10 +77,10 @@ public class TestJugador {
     @Test
     public void PosicionoAlJugadorEnUnMapaYLoMuevoParaLaIzquierda() {
         CleanSingleton.cleanMapa();
-        Jugador jugador = new Jugador();
+
         Mapa mapa = Mapa.getInstance();
 
-        mapa.ocuparTerreno(new Posicion(1, 1), jugador);
+        Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
 
         jugador.moverHaciaLaDerecha();
 
@@ -85,13 +90,15 @@ public class TestJugador {
     @Test
     public void PosicionoAlJugadorEnUnMapaJuntoAUnMaterialASuDerechaIntentoMoverASuDerechaYNoMeDejaYElJugadorMantieneSuPosicion() {
         CleanSingleton.cleanMapa();
-        Jugador jugador = new Jugador();
-        Madera madera = new Madera();
-        Posicion posicionJugador = new Posicion(1, 1);
 
         Mapa mapa = Mapa.getInstance();
 
-        mapa.ocuparTerreno(posicionJugador, jugador);
+        Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
+
+        Madera madera = new Madera();
+
+        Posicion posicionJugador = jugador.obtenerPosicionActual();
+
 
         mapa.ocuparTerreno(new Posicion(2, 1), madera);
 
@@ -107,15 +114,12 @@ public class TestJugador {
     @Test
     public void PosicionoAlJugadorEnUnBordeDelMapaIntentoMoverloHaciaUnDesbordeYNoMeDejaMateniendoLaPosicionDelJugador() {
         CleanSingleton.cleanMapa();
-        Jugador jugador = new Jugador();
+
+        Mapa mapa = Mapa.getInstance();
 
         Posicion posicionJugador = new Posicion(0, 1);
 
-        Mapa mapa = Mapa.getInstance();
-        ;
-
-        mapa.ocuparTerreno(posicionJugador, jugador);
-
+        Jugador jugador = new Jugador(posicionJugador, mapa);
 
         assertThrows(PosicionInvalidaException.class,
                 () -> {
@@ -124,5 +128,20 @@ public class TestJugador {
 
         Assert.assertEquals(posicionJugador, jugador.obtenerPosicionActual());
 
+    }
+
+    @Test
+    public void muevoAlJugadorALaDerecha() {
+        CleanSingleton.cleanMapa();
+
+        Mapa mapa = Mapa.getInstance();
+
+        Posicion posicionJugador = new Posicion(0, 1);
+
+        Jugador jugador = new Jugador(posicionJugador, mapa);
+
+        jugador.moverHaciaLaDerecha();
+
+        Assert.assertEquals(1, 1);
     }
 }

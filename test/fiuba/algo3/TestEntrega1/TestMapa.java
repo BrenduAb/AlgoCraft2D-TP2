@@ -21,11 +21,9 @@ public class TestMapa {
 
         Mapa mapa = Mapa.getInstance();
 
-        Jugador jugador = new Jugador();
-
         assertThrows(PosicionInvalidaException.class,
                 () -> {
-                    mapa.ocuparTerreno(new Posicion(10, 1), jugador);
+                    Jugador jugador = new Jugador(new Posicion(10, 1), mapa);
                 });
 
     }
@@ -40,11 +38,10 @@ public class TestMapa {
 
         mapa.ocuparTerreno(new Posicion(1, 1), madera);
 
-        Jugador jugador = new Jugador();
 
         assertThrows(CeldaOcupadaException.class,
                 () -> {
-                    mapa.ocuparTerreno(new Posicion(1, 1), jugador);
+                    Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
                 });
     }
 }

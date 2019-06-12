@@ -10,10 +10,15 @@ public class Jugador implements IOcupable {
 
     Inventario inventario = new Inventario();
     Posicion posicion = null;
+    Mapa mapa;
 
-    public Jugador() {
+    public Jugador(Posicion posicionInicial, Mapa mapa) {
         IGuardable hachaMadera = ConstructorHerramientas.construirPicoDeMadera();
+
+        this.mapa = mapa;
         this.inventario.agregarAlInventario(hachaMadera);
+
+        this.mapa.ocuparTerreno(posicionInicial, this);
     }
 
     public int obtenerCantidadDeObjetosDelInventario() {
@@ -25,22 +30,32 @@ public class Jugador implements IOcupable {
         this.posicion = nuevaPosicion;
     }
 
+    @Override
+    public Posicion obtenerPosicion() {
+        return this.posicion;
+    }
+
     public Posicion obtenerPosicionActual() {
         return this.posicion;
     }
 
     public void moverHaciaLaDerecha() {
-        Posicion posicionActual = this.posicion;
         Posicion nuevPosicion = new Posicion(this.posicion.x() + 1, this.posicion.y());
-        Mapa mapa = Mapa.getInstance();;
-        mapa.ocuparTerreno(nuevPosicion, this);
-        mapa.liberarTerreno(posicionActual);
+        this.mapa.moverOcupable(this,nuevPosicion);
     }
+
     public void moverHaciaLaIzquierda() {
-        Posicion posicionActual = this.posicion;
         Posicion nuevPosicion = new Posicion(this.posicion.x() - 1, this.posicion.y());
-        Mapa mapa = Mapa.getInstance();;
-        mapa.ocuparTerreno(nuevPosicion, this);
-        mapa.liberarTerreno(posicionActual);
+        this.mapa.moverOcupable(this,nuevPosicion);
+    }
+
+    public void moverHaciAbajo() {
+        Posicion nuevPosicion = new Posicion(this.posicion.x() , this.posicion.y() -1);
+        this.mapa.moverOcupable(this,nuevPosicion);
+    }
+
+    public void moverHaciArriba() {
+        Posicion nuevPosicion = new Posicion(this.posicion.x() , this.posicion.y() +1);
+        this.mapa.moverOcupable(this,nuevPosicion);
     }
 }
