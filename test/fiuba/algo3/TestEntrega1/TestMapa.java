@@ -9,26 +9,19 @@ import fiuba.algo3.model.Materiales.Madera;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.Field;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 public class TestMapa {
 
-    @Test
+    @Test(expected = PosicionInvalidaException.class)
     public void pongoElJugadorEnElMapaEnUnaPosicionQueNoExisteYTiraPosicionInvalidaException() {
         CleanSingleton.cleanMapa();
 
         Mapa mapa = Mapa.getInstance();
 
-        assertThrows(PosicionInvalidaException.class,
-                () -> {
-                    Jugador jugador = new Jugador(new Posicion(10, 1), mapa);
-                });
+        Jugador jugador = new Jugador(new Posicion(10, 1), mapa);
 
     }
 
-    @Test
+    @Test(expected = CeldaOcupadaException.class)
     public void pongoElJugadorEnElMapaEnUnaPosicionQueYaEstaOcupadaYTiraCeldaOcupadaException() {
         CleanSingleton.cleanMapa();
 
@@ -39,9 +32,6 @@ public class TestMapa {
         mapa.ocuparTerreno(new Posicion(1, 1), madera);
 
 
-        assertThrows(CeldaOcupadaException.class,
-                () -> {
-                    Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
-                });
+        Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
     }
 }

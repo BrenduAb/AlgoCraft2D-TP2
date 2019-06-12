@@ -14,7 +14,6 @@ import org.junit.Test;
 
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestJugador {
 
@@ -87,7 +86,7 @@ public class TestJugador {
         Assert.assertEquals(new Posicion(2, 1), jugador.obtenerPosicionActual());
     }
 
-    @Test
+    @Test(expected = CeldaOcupadaException.class)
     public void PosicionoAlJugadorEnUnMapaJuntoAUnMaterialASuDerechaIntentoMoverASuDerechaYNoMeDejaYElJugadorMantieneSuPosicion() {
         CleanSingleton.cleanMapa();
 
@@ -102,16 +101,11 @@ public class TestJugador {
 
         mapa.ocuparTerreno(new Posicion(2, 1), madera);
 
-        assertThrows(CeldaOcupadaException.class,
-                () -> {
-                    jugador.moverHaciaLaDerecha();
-                });
-
-        Assert.assertEquals(posicionJugador, jugador.obtenerPosicionActual());
+        jugador.moverHaciaLaDerecha();
 
     }
 
-    @Test
+    @Test(expected = PosicionInvalidaException.class)
     public void PosicionoAlJugadorEnUnBordeDelMapaIntentoMoverloHaciaUnDesbordeYNoMeDejaMateniendoLaPosicionDelJugador() {
         CleanSingleton.cleanMapa();
 
@@ -121,13 +115,9 @@ public class TestJugador {
 
         Jugador jugador = new Jugador(posicionJugador, mapa);
 
-        assertThrows(PosicionInvalidaException.class,
-                () -> {
-                    jugador.moverHaciaLaIzquierda();
-                });
+        jugador.moverHaciaLaIzquierda();
 
-        Assert.assertEquals(posicionJugador, jugador.obtenerPosicionActual());
-
+        //Assert.assertEquals(posicionJugador, jugador.obtenerPosicionActual());
     }
 
     @Test
