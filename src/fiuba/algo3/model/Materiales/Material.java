@@ -6,7 +6,7 @@ import fiuba.algo3.model.Mapa.Posicion;
 
 public abstract class Material implements Golpeable, IOcupable {
     protected  int durabilidad;
-
+    private Posicion posicion;
     public void desgastar(int fuerza) {
         this.durabilidad -= fuerza;
     }
@@ -17,6 +17,11 @@ public abstract class Material implements Golpeable, IOcupable {
 
     @Override
     public void definirPosicion(Posicion nuevaPosicion) {
+        this.posicion = nuevaPosicion;
+    }
 
+    @Override
+    public Posicion obtenerPosicion() {
+        return this.posicion;
     }
 }

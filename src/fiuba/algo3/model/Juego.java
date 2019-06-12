@@ -6,14 +6,14 @@ import fiuba.algo3.model.Mapa.Posicion;
 
 public class Juego {
 
-    private Jugador jugador = new Jugador();
+    private Jugador jugador;
 
     public Juego(){
         Mapa mapa = Mapa.getInstance();
-        Jugador jugador = new Jugador();
+
         Posicion posicionJugador = new Posicion(3,3);
 
-        mapa.ocuparTerreno(posicionJugador,jugador);
+        Jugador jugador = new Jugador(posicionJugador,mapa);
 
         this.jugador = jugador;
     }
