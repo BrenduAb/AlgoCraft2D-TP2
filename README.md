@@ -17,5 +17,5 @@ Este proyecto es un simple ejemplo que muestra un proyecto base en Java para la 
 - [X] Diagrama de seq PosicionoAlJugadorEnUnMapa
 - [X] Diagrama de seq Posicionar un IOcupable en el mapa y verificar que este
 - [ ] Diagrama de seq Construir un hacha de madera en el crafter
-- [ ] Diagrama de Clase: Mapa con posicion y Celda y sus referencias
+- [X] Diagrama de Clase: Mapa con posicion y Celda y sus referencias
 - [X] Diagrama de Clase : Herramientas
