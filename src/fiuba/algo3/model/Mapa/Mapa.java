@@ -50,7 +50,7 @@ public class Mapa {
     }
 
     public void moverOcupable(IOcupable ocupable, Posicion nuevoPosicion){
-        Posicion posicionActual = ocupable.obtenerPosicion();
+        Posicion posicionActual = ocupable.obtenerPosicionActual();
         this.ocuparTerreno(nuevoPosicion, ocupable);
         this.liberarTerreno(posicionActual);
     }

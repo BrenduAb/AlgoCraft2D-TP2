@@ -21,7 +21,7 @@ public abstract class Material implements Golpeable, IOcupable {
     }
 
     @Override
-    public Posicion obtenerPosicion() {
+    public Posicion obtenerPosicionActual() {
         return this.posicion;
     }
 }
