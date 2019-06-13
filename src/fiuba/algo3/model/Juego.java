@@ -6,7 +6,9 @@ import fiuba.algo3.model.Mapa.Posicion;
 import fiuba.algo3.model.Materiales.Madera;
 import fiuba.algo3.model.Materiales.Metal;
 
-public class Juego {
+public class
+
+Juego {
 
     private int POS_X_JUGADOR = 7;
     private int POS_Y_JUGADOR = 7;
@@ -55,4 +57,6 @@ public class Juego {
     public Jugador obtenerJugador() {
         return this.jugador;
     }
+
+
 }

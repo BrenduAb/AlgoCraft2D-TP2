@@ -12,12 +12,12 @@ public class Jugador implements IOcupable {
     Posicion posicion = null;
     Mapa mapa;
 
+
     public Jugador(Posicion posicionInicial, Mapa mapa) {
         IGuardable hachaMadera = ConstructorHerramientas.construirPicoDeMadera();
 
         this.mapa = mapa;
         this.inventario.agregarAlInventario(hachaMadera);
-
         this.mapa.ocuparTerreno(posicionInicial, this);
     }
 
