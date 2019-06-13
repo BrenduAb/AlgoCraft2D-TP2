@@ -30,11 +30,8 @@ public class Jugador implements IOcupable {
         this.posicion = nuevaPosicion;
     }
 
-    @Override
-    public Posicion obtenerPosicion() {
-        return this.posicion;
-    }
 
+    @Override
     public Posicion obtenerPosicionActual() {
         return this.posicion;
     }
