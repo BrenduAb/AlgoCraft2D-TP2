@@ -48,4 +48,10 @@ public class Mapa {
     public Celda obtenerCelda(Posicion posicion){
         return this.mapa.get(posicion);
     }
+
+    public void moverOcupable(IOcupable ocupable, Posicion nuevoPosicion){
+        Posicion posicionActual = ocupable.obtenerPosicion();
+        this.ocuparTerreno(nuevoPosicion, ocupable);
+        this.liberarTerreno(posicionActual);
+    }
 }

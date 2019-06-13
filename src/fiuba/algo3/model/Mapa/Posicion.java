@@ -1,7 +1,5 @@
 package fiuba.algo3.model.Mapa;
 
-import javafx.geometry.Pos;
-
 public class Posicion {
     private int x;
     private int y;
