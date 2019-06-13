@@ -16,7 +16,7 @@ public class TestMapa {
 
         Mapa mapa = Mapa.getInstance();
 
-        Jugador jugador = new Jugador(new Posicion(10, 1), mapa);
+        Jugador jugador = new Jugador(new Posicion(24, 1), mapa);
 
     }
 
