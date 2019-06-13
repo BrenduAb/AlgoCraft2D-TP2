@@ -10,8 +10,8 @@ public class Mapa {
     private static Mapa instancia = null;
     private Map<Posicion, Celda> mapa = null;
 
-    private int ancho = 6;
-    private int alto = 6;
+    private int ancho = 12;
+    private int alto = 8;
 
     private Mapa() {
         this.mapa = new HashMap<Posicion, Celda>();
