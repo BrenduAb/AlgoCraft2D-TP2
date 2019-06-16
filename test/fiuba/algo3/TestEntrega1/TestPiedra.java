@@ -10,33 +10,99 @@ import org.junit.Test;
 public class TestPiedra {
 
     @Test
-    public void piedraIniciaCon30DeDurabilidad(){
+    public void piedraSeCreaCorrectamenteConSuDurabilidadCorrespondiente(){
         Piedra piedra = new Piedra();
+        int durabilidadPiedra = 30;
 
-        Assert.assertEquals(30,piedra.obtenerDurabilidad());
+        Assert.assertNotNull(piedra);
+        Assert.assertEquals(durabilidadPiedra, piedra.obtenerDurabilidad());
     }
 
     @Test
-    public void piedraChocaConUnPicoYSeReduceSuDurabilidad(){
-        Pico pico = ConstructorHerramientas.construirPicoDeMadera();
+    public void piedraChocaConUnHachaDeMaderaYNoSeReduceSuDurabilidad(){
+        Hacha hachaMadera = ConstructorHerramientas.construirHachaDeMadera();
         Piedra piedra = new Piedra();
 
         int durabilidadInicial = piedra.obtenerDurabilidad();
-        pico.usarContra(piedra);
+        hachaMadera.usarContra(piedra);
 
-        Assert.assertEquals(durabilidadInicial -2, piedra.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadInicial, piedra.obtenerDurabilidad());
     }
 
     @Test
-    public void piedraChocaConUnHachaYNoSeReduceSuDurabilidad(){
-        Hacha hacha = ConstructorHerramientas.construirHachaDeMadera();
+    public void piedraChocaConUnHachaDePiedraYNoSeReduceSuDurabilidad(){
+        Hacha hachaPiedra = ConstructorHerramientas.construirHachaDePiedra();
         Piedra piedra = new Piedra();
 
         int durabilidadInicial = piedra.obtenerDurabilidad();
-        hacha.usarContra(piedra);
+        hachaPiedra.usarContra(piedra);
 
-        Assert.assertEquals(durabilidadInicial,
-                piedra.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadInicial, piedra.obtenerDurabilidad());
+    }
+
+
+    @Test
+    public void piedraChocaConUnHachaDeMetalYNoSeReduceSuDurabilidad(){
+        Hacha hachaMetal = ConstructorHerramientas.construirHachaDeMetal();
+        Piedra piedra = new Piedra();
+
+        int durabilidadInicial = piedra.obtenerDurabilidad();
+        hachaMetal.usarContra(piedra);
+
+        Assert.assertEquals(durabilidadInicial, piedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void piedraChocaConUnPicoDeMaderaUnaVezYSeReduceSuDurabilidadSegunLaFuerzaDePico(){
+        Pico picoMadera = ConstructorHerramientas.construirPicoDeMadera();
+        Piedra piedra = new Piedra();
+
+        int durabilidadInicial = piedra.obtenerDurabilidad();
+        int desgastePiedra = picoMadera.obtenerFuerza();
+
+        picoMadera.usarContra(piedra);
+
+        Assert.assertEquals(durabilidadInicial-desgastePiedra, piedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void piedraChocaConUnPicoDeMaderaDosVecesYSeReduceSuDurabilidadSegunLaFuerzaDePicoDosVeces(){
+        Pico picoMadera = ConstructorHerramientas.construirPicoDeMadera();
+        Piedra piedra = new Piedra();
+
+        int durabilidadInicial = piedra.obtenerDurabilidad();
+        int desgastePiedra = picoMadera.obtenerFuerza();
+
+        picoMadera.usarContra(piedra);
+        picoMadera.usarContra(piedra);
+
+        Assert.assertEquals(durabilidadInicial-(desgastePiedra*2), piedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void piedraChocaConUnPicoDePiedraYSeReduceSuDurabilidadSegunLaFuerzaDePico(){
+        Pico picoPiedra = ConstructorHerramientas.construirPicoDePiedra();
+        Piedra piedra = new Piedra();
+
+        int durabilidadInicial = piedra.obtenerDurabilidad();
+        int desgastePiedra = picoPiedra.obtenerFuerza();
+
+        picoPiedra.usarContra(piedra);
+
+        Assert.assertEquals(durabilidadInicial-desgastePiedra, piedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void piedraChocaConUnPicoDeMetalYSeReduceSuDurabilidadSegunLaFuerzaDePico(){
+        Pico picoMetal = ConstructorHerramientas.construirPicoDeMetal();
+        Piedra piedra = new Piedra();
+
+        int durabilidadInicial = piedra.obtenerDurabilidad();
+        int desgastePiedra = picoMetal.obtenerFuerza();
+
+        picoMetal.usarContra(piedra);
+
+        Assert.assertEquals(durabilidadInicial-desgastePiedra, piedra.obtenerDurabilidad());
     }
 
 }

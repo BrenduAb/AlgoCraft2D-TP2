@@ -14,10 +14,10 @@ public class TestPicoFino {
 
     @Test
     public void testSeCreaCorrectamentePicoFinoConSuDurabilidadYFuerzaCorrespondiente(){
-        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
-
         int durabilidadPicoFino = 1000;
         int fuerzaPicoFino = 20;
+
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
 
         Assert.assertNotNull(picoFino);
         Assert.assertEquals(durabilidadPicoFino, picoFino.obtenerDurabilidad());
@@ -33,7 +33,7 @@ public class TestPicoFino {
 
         picoFino.usarContra(madera);
 
-        Assert.assertEquals(durabilidadPicoFino - 100, picoFino.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoFino -= (durabilidadPicoFino * 0.1), picoFino.obtenerDurabilidad());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class TestPicoFino {
 
         picoFino.usarContra(piedra);
 
-        Assert.assertEquals(durabilidadPicoFino - 100, picoFino.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoFino -= (durabilidadPicoFino * 0.1), picoFino.obtenerDurabilidad());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class TestPicoFino {
 
         picoFino.usarContra(metal);
 
-        Assert.assertEquals(durabilidadPicoFino - 100, picoFino.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoFino -= (durabilidadPicoFino * 0.1), picoFino.obtenerDurabilidad());
     }
 
     @Test
@@ -69,7 +69,7 @@ public class TestPicoFino {
 
         picoFino.usarContra(diamante);
 
-        Assert.assertEquals(durabilidadPicoFino - 100, picoFino.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoFino -= (durabilidadPicoFino * 0.1), picoFino.obtenerDurabilidad());
     }
 
     @Test
@@ -109,15 +109,16 @@ public class TestPicoFino {
     }
 
     @Test
-    public void testPicoFinoSeUsaContraDiamanteYSeDesgastaLaDurabilidadDelDiamante(){
+    public void testPicoFinoSeUsaContraDiamanteYSeDesgastaDurabilidadDelDiamanteSegunFuerzaDelPicoFino(){
         Diamante diamante = new Diamante();
         PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
 
         int durabilidadDiamante = diamante.obtenerDurabilidad();
+        int desgasteDiamante = picoFino.obtenerFuerza();
 
         picoFino.usarContra(diamante);
 
-        Assert.assertEquals(durabilidadDiamante - 20, diamante.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadDiamante - desgasteDiamante, diamante.obtenerDurabilidad());
     }
 }
 

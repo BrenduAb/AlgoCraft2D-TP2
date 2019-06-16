@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public class TestDiamante {
     @Test
-    public void testDiamanteSeCreaCorrectamenteConSuDurabilidadCorrespondiente(){
+    public void diamanteSeCreaCorrectamenteConSuDurabilidadCorrespondiente(){
         Diamante diamante = new Diamante();
 
         int durabilidadDiamante = 100;
@@ -22,7 +22,7 @@ public class TestDiamante {
 
 
     @Test
-    public void testHachaDeMaderaSeUsaContraDiamanteYDiamanteNoSeDesgasta(){
+    public void hachaDeMaderaSeUsaContraDiamanteYDiamanteNoSeDesgasta(){
         Diamante diamante = new Diamante();
         Hacha hachaDeMadera = ConstructorHerramientas.construirHachaDeMadera();
 
@@ -35,7 +35,7 @@ public class TestDiamante {
 
 
     @Test
-    public void testHachaDeMetalSeUsaContraDiamanteYDiamanteNoSeDesgasta(){
+    public void hachaDeMetalSeUsaContraDiamanteYDiamanteNoSeDesgasta(){
         Diamante diamante = new Diamante();
         Hacha hachaDeMetal = ConstructorHerramientas.construirHachaDeMetal();
 
@@ -48,7 +48,7 @@ public class TestDiamante {
 
 
     @Test
-    public void testHachaDePiedraSeUsaContraDiamanteYDiamanteNoSeDesgasta(){
+    public void hachaDePiedraSeUsaContraDiamanteYDiamanteNoSeDesgasta(){
         Diamante diamante = new Diamante();
         Hacha hachaDePiedra = ConstructorHerramientas.construirHachaDePiedra();
 
@@ -61,7 +61,7 @@ public class TestDiamante {
 
 
     @Test
-    public void testPicoDeMaderaSeUsaContraDiamanteYDiamanteNoSeDesgasta(){
+    public void picoDeMaderaSeUsaContraDiamanteYDiamanteNoSeDesgasta(){
         Diamante diamante = new Diamante();
         Pico picoDeMadera = ConstructorHerramientas.construirPicoDeMadera();
 
@@ -73,7 +73,7 @@ public class TestDiamante {
     }
 
     @Test
-    public void testPicoDePiedraSeUsaContraDiamanteYDiamanteNoSeDesgasta(){
+    public void picoDePiedraSeUsaContraDiamanteYDiamanteNoSeDesgasta(){
         Diamante diamante = new Diamante();
         Pico picoDePiedra = ConstructorHerramientas.construirPicoDePiedra();
 
@@ -85,7 +85,7 @@ public class TestDiamante {
     }
 
     @Test
-    public void testPicoDeMetalSeUsaContraDiamanteYDiamanteNoSeDesgasta(){
+    public void picoDeMetalSeUsaContraDiamanteYDiamanteNoSeDesgasta(){
         Diamante diamante = new Diamante();
         Pico picoDeMetal = ConstructorHerramientas.construirPicoDeMetal();
 
@@ -97,27 +97,29 @@ public class TestDiamante {
     }
 
     @Test
-    public void testPicoFinoSeUsaUnaVezContraDiamanteYDiamanteSeDesgasta20(){
+    public void picoFinoSeUsaUnaVezContraDiamanteYDiamanteSeDesgastaSegunLaFuerzaDelPicoFino(){
         Diamante diamante = new Diamante();
         PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
 
         int durabilidadInicialDiamante = diamante.obtenerDurabilidad();
+        int desgasteDiamante = picoFino.obtenerFuerza();
 
         picoFino.usarContra(diamante);
 
-        Assert.assertEquals(durabilidadInicialDiamante - 20, diamante.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadInicialDiamante-desgasteDiamante, diamante.obtenerDurabilidad());
     }
 
     @Test
-    public void testPicoFinoSeUsaDosVecesContraDiamanteYDiamanteSeDesgasta40(){
+    public void picoFinoSeUsaDosVecesContraDiamanteYDiamanteSeDesgastaDosVecesSegunLaFuerzaDelPicoFino(){
         Diamante diamante = new Diamante();
         PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
 
         int durabilidadInicialDiamante = diamante.obtenerDurabilidad();
+        int desgasteDiamante = picoFino.obtenerFuerza();
 
         picoFino.usarContra(diamante);
         picoFino.usarContra(diamante);
 
-        Assert.assertEquals(durabilidadInicialDiamante - 40, diamante.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadInicialDiamante-(desgasteDiamante * 2), diamante.obtenerDurabilidad());
     }
 }
