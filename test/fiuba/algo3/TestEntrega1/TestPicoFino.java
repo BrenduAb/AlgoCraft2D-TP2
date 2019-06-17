@@ -1,12 +1,8 @@
 package fiuba.algo3.TestEntrega1;
 
 import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
-
 import fiuba.algo3.model.Herramientas.PicoFino;
-import fiuba.algo3.model.Materiales.Diamante;
-import fiuba.algo3.model.Materiales.Madera;
-import fiuba.algo3.model.Materiales.Metal;
-import fiuba.algo3.model.Materiales.Piedra;
+import fiuba.algo3.model.Materiales.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -120,6 +116,43 @@ public class TestPicoFino {
 
         Assert.assertEquals(durabilidadDiamante - desgasteDiamante, diamante.obtenerDurabilidad());
     }
+
+    @Test
+    public void picoFinoSeUsaContraCualquierMaterial49VecesYNoSeRompe(){
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+        Material metal = new Metal();
+
+        int durabilidadInicialPicoFino = picoFino.obtenerDurabilidad();
+
+        for(int i = 1; i <= 49; i++) {
+            picoFino.usarContra(metal);
+        }
+
+        Assert.assertNotSame(durabilidadInicialPicoFino, picoFino.obtenerDurabilidad());
+        Assert.assertNotSame(0, picoFino.obtenerDurabilidad());
+    }
+
+    @Test
+    public void picoFinoSeUsaContraCualquierMaterial50VecesYSeRompe(){
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+        Material madera = new Madera();
+
+        for(int i = 1; i <= 50; i++) {
+            picoFino.usarContra(madera);
+        }
+
+        Assert.assertEquals(0, picoFino.obtenerDurabilidad());
+    }
+
+    @Test
+    public void picoFinoSeUsaContraCualquierMaterialMasDe50VecesYSigueRota() {
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+        Material piedra = new Piedra();
+
+        for (int i = 1; i <= 60; i++) {
+            picoFino.usarContra(piedra);
+        }
+
+        Assert.assertEquals(0, picoFino.obtenerDurabilidad());
+    }
 }
-
-

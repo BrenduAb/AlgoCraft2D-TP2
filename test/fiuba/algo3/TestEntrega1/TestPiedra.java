@@ -3,6 +3,7 @@ package fiuba.algo3.TestEntrega1;
 import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Herramientas.Hacha;
 import fiuba.algo3.model.Herramientas.Pico;
+import fiuba.algo3.model.Herramientas.PicoFino;
 import fiuba.algo3.model.Materiales.Piedra;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -105,4 +106,97 @@ public class TestPiedra {
         Assert.assertEquals(durabilidadInicial-desgastePiedra, piedra.obtenerDurabilidad());
     }
 
+    @Test
+    public void piedraChocaConUnPicoFinoYNoSeReduceSuDurabilidad(){
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+        Piedra piedra = new Piedra();
+
+        int durabilidadInicial = piedra.obtenerDurabilidad();
+        picoFino.usarContra(piedra);
+
+        Assert.assertEquals(durabilidadInicial, piedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void piedraChocaConUnPicoDeMaderaCatorceVecesYNoSeRompe(){
+        Pico picoMadera = ConstructorHerramientas.construirPicoDeMadera();
+        Piedra piedra = new Piedra();
+
+        for(int i = 1; i <= 14; i++) {
+            picoMadera.usarContra(piedra);
+        }
+
+        Assert.assertNotSame(0, piedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void piedraChocaConUnPicoDeMaderaQuinceVecesYSeRompe(){
+        Pico picoMadera = ConstructorHerramientas.construirPicoDeMadera();
+        Piedra piedra = new Piedra();
+
+        for(int i = 1; i <= 15; i++) {
+            picoMadera.usarContra(piedra);
+        }
+
+        Assert.assertEquals(0, piedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void piedraChocaConUnPicoDeMaderaMasDeQuinceVecesYSigueRota(){
+        Pico picoMadera = ConstructorHerramientas.construirPicoDeMadera();
+        Piedra piedra = new Piedra();
+
+        for(int i = 1; i <= 20; i++) {
+            picoMadera.usarContra(piedra);
+        }
+
+        Assert.assertEquals(0, piedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void piedraChocaConUnPicoDePiedraSieteVecesYNoSeRompe(){
+        Pico picoPiedra = ConstructorHerramientas.construirPicoDePiedra();
+        Piedra piedra = new Piedra();
+
+        for(int i = 1; i <= 7; i++) {
+            picoPiedra.usarContra(piedra);
+        }
+
+        Assert.assertNotSame(0, piedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void piedraChocaConUnPicoDePiedraOchoVecesYSeRompe(){
+        Pico picoPiedra = ConstructorHerramientas.construirPicoDePiedra();
+        Piedra piedra = new Piedra();
+
+        for(int i = 1; i <= 8; i++) {
+            picoPiedra.usarContra(piedra);
+        }
+
+        Assert.assertEquals(0, piedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void piedraChocaConUnPicoDeMetalDosVecesYNoSeRompe(){
+        Pico picoMetal = ConstructorHerramientas.construirPicoDeMetal();
+        Piedra piedra = new Piedra();
+
+        picoMetal.usarContra(piedra);
+        picoMetal.usarContra(piedra);
+
+        Assert.assertNotSame(0, piedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void piedraChocaConUnPicoDeMetalTresVecesYSeRompe(){
+        Pico picoMetal = ConstructorHerramientas.construirPicoDeMetal();
+        Piedra piedra = new Piedra();
+
+        picoMetal.usarContra(piedra);
+        picoMetal.usarContra(piedra);
+        picoMetal.usarContra(piedra);
+
+        Assert.assertEquals(0, piedra.obtenerDurabilidad());
+    }
 }

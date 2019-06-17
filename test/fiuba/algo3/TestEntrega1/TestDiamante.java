@@ -111,8 +111,8 @@ public class TestDiamante {
 
     @Test
     public void picoFinoSeUsaDosVecesContraDiamanteYDiamanteSeDesgastaDosVecesSegunLaFuerzaDelPicoFino(){
-        Diamante diamante = new Diamante();
         PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+        Diamante diamante = new Diamante();
 
         int durabilidadInicialDiamante = diamante.obtenerDurabilidad();
         int desgasteDiamante = picoFino.obtenerFuerza();
@@ -121,5 +121,47 @@ public class TestDiamante {
         picoFino.usarContra(diamante);
 
         Assert.assertEquals(durabilidadInicialDiamante-(desgasteDiamante * 2), diamante.obtenerDurabilidad());
+    }
+
+    @Test
+    public void diamanteChocaConUnPicoFinoCuatroVecesYNoSeRompe(){
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+        Diamante diamante = new Diamante();
+
+        picoFino.usarContra(diamante);
+        picoFino.usarContra(diamante);
+        picoFino.usarContra(diamante);
+        picoFino.usarContra(diamante);
+
+        Assert.assertNotSame(0, diamante.obtenerDurabilidad());
+    }
+
+    @Test
+    public void diamanteChocaConUnPicoFinoCincoVecesYSeRompe(){
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+        Diamante diamante = new Diamante();
+
+        picoFino.usarContra(diamante);
+        picoFino.usarContra(diamante);
+        picoFino.usarContra(diamante);
+        picoFino.usarContra(diamante);
+        picoFino.usarContra(diamante);
+
+        Assert.assertEquals(0, diamante.obtenerDurabilidad());
+    }
+
+    @Test
+    public void diamanteChocaConUnPicoFinoMasDeCincoVecesYSigueRota(){
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+        Diamante diamante = new Diamante();
+
+        picoFino.usarContra(diamante);
+        picoFino.usarContra(diamante);
+        picoFino.usarContra(diamante);
+        picoFino.usarContra(diamante);
+        picoFino.usarContra(diamante);
+        picoFino.usarContra(diamante);
+
+        Assert.assertEquals(0, diamante.obtenerDurabilidad());
     }
 }

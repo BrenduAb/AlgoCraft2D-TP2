@@ -3,6 +3,7 @@ package fiuba.algo3.TestEntrega1;
 import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Herramientas.Hacha;
 import fiuba.algo3.model.Herramientas.Pico;
+import fiuba.algo3.model.Herramientas.PicoFino;
 import fiuba.algo3.model.Materiales.Metal;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -87,7 +88,6 @@ public class TestMetal {
         Assert.assertEquals(durabilidadInicial - (desgaste * 2), metal.obtenerDurabilidad());
     }
 
-
     @Test
     public void metalChocaConUnPicoDeMetalYNoSeReduceSuDurabilidad() {
         Pico picoMetal = ConstructorHerramientas.construirPicoDeMetal();
@@ -99,5 +99,50 @@ public class TestMetal {
         Assert.assertEquals(durabilidadInicial, metal.obtenerDurabilidad());
     }
 
+    @Test
+    public void metalChocaConUnPicoFinoYNoSeReduceSuDurabilidad() {
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+        Metal metal = new Metal();
 
+        int durabilidadInicial = metal.obtenerDurabilidad();
+        picoFino.usarContra(metal);
+
+        Assert.assertEquals(durabilidadInicial, metal.obtenerDurabilidad());
+    }
+
+    @Test
+    public void metalChocaConUnPicoDePiedraDoceVecesYNoSeRompe(){
+        Pico picoPiedra = ConstructorHerramientas.construirPicoDePiedra();
+        Metal metal = new Metal();
+
+        for(int i = 1; i <= 12; i++) {
+            picoPiedra.usarContra(metal);
+        }
+
+        Assert.assertNotSame(0, metal.obtenerDurabilidad());
+    }
+
+    @Test
+    public void metalChocaConUnPicoDePiedraTreceVecesYSeRompe(){
+        Pico picoPiedra = ConstructorHerramientas.construirPicoDePiedra();
+        Metal metal = new Metal();
+
+        for(int i = 1; i <= 13; i++) {
+            picoPiedra.usarContra(metal);
+        }
+
+        Assert.assertEquals(0, metal.obtenerDurabilidad());
+    }
+
+    @Test
+    public void metalChocaConUnPicoDePiedraMasDeTreceVecesYSigueRota(){
+        Pico picoPiedra = ConstructorHerramientas.construirPicoDePiedra();
+        Metal metal = new Metal();
+
+        for(int i = 1; i <= 18; i++) {
+            picoPiedra.usarContra(metal);
+        }
+
+        Assert.assertEquals(0, metal.obtenerDurabilidad());
+    }
 }

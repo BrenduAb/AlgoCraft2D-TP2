@@ -1,7 +1,7 @@
 package fiuba.algo3.TestEntrega1;
 
-
-import fiuba.algo3.model.Herramientas.*;
+import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
+import fiuba.algo3.model.Herramientas.Hacha;
 import fiuba.algo3.model.Materiales.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -152,6 +152,99 @@ public class TestHacha {
         hachaMetal.usarContra(metal);
 
         Assert.assertEquals(durabilidadHachaMetal-desgasteHachaMetal, hachaMetal.obtenerDurabilidad());
+    }
+
+    @Test
+    public void hachaDeMaderaSeUsaContraCualquierMaterial49VecesYNoSeRompe(){
+        Hacha hachaMadera = ConstructorHerramientas.construirHachaDeMadera();
+        Material metal = new Metal();
+
+        int durabilidadInicialHachaMadera = hachaMadera.obtenerDurabilidad();
+
+        for(int i = 1; i <= 49; i++) {
+            hachaMadera.usarContra(metal);
+        }
+
+        Assert.assertNotSame(durabilidadInicialHachaMadera, hachaMadera.obtenerDurabilidad());
+        Assert.assertNotSame(0, hachaMadera.obtenerDurabilidad());
+    }
+
+    @Test
+    public void hachaDeMaderaSeUsaContraCualquierMaterial50VecesYSeRompe(){
+        Hacha hachaMadera = ConstructorHerramientas.construirHachaDeMadera();
+        Material madera = new Madera();
+
+        for(int i = 1; i <= 50; i++) {
+            hachaMadera.usarContra(madera);
+        }
+
+        Assert.assertEquals(0, hachaMadera.obtenerDurabilidad());
+    }
+
+    @Test
+    public void hachaDeMaderaSeUsaContraCualquierMaterialMasDe50VecesYSigueRota(){
+        Hacha hachaMadera = ConstructorHerramientas.construirHachaDeMadera();
+        Material piedra = new Piedra();
+
+        for(int i = 1; i <= 60; i++) {
+            hachaMadera.usarContra(piedra);
+        }
+
+        Assert.assertEquals(0, hachaMadera.obtenerDurabilidad());
+    }
+
+    @Test
+    public void hachaDePiedraSeUsaContraCualquierMaterial39VecesYNoSeRompe(){
+        Hacha hachaPiedra = ConstructorHerramientas.construirHachaDePiedra();
+        Material piedra = new Piedra();
+
+        int durabilidadInicialHachaPiedra = hachaPiedra.obtenerDurabilidad();
+
+        for(int i = 1; i <= 39; i++) {
+            hachaPiedra.usarContra(piedra);
+        }
+
+        Assert.assertNotSame(durabilidadInicialHachaPiedra, hachaPiedra.obtenerDurabilidad());
+        Assert.assertNotSame(0, hachaPiedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void hachaDePiedraSeUsaContraCualquierMaterial40VecesYSeRompe(){
+        Hacha hachaPiedra = ConstructorHerramientas.construirHachaDePiedra();
+        Material diamante = new Diamante();
+
+        for(int i = 1; i <= 40; i++) {
+            hachaPiedra.usarContra(diamante);
+        }
+
+        Assert.assertEquals(0, hachaPiedra.obtenerDurabilidad());
+    }
+
+    @Test
+    public void hachaDeMetalSeUsaContraCualquierMaterial79VecesYNoSeRompe(){
+        Hacha hachaMetal = ConstructorHerramientas.construirHachaDeMetal();
+        Material metal = new Metal();
+
+        int durabilidadInicialHachaMetal = hachaMetal.obtenerDurabilidad();
+
+        for(int i = 1; i <= 79; i++) {
+            hachaMetal.usarContra(metal);
+        }
+
+        Assert.assertNotSame(durabilidadInicialHachaMetal, hachaMetal.obtenerDurabilidad());
+        Assert.assertNotSame(0, hachaMetal.obtenerDurabilidad());
+    }
+
+    @Test
+    public void hachaDeMetalSeUsaContraCualquierMaterial80VecesYSeRompe(){
+        Hacha hachaMetal = ConstructorHerramientas.construirHachaDeMetal();
+        Material madera = new Madera();
+
+        for(int i = 1; i <= 80; i++) {
+            hachaMetal.usarContra(madera);
+        }
+
+        Assert.assertEquals(0, hachaMetal.obtenerDurabilidad());
     }
 }
 

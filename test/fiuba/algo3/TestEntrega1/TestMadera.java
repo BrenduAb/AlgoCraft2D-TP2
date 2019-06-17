@@ -3,6 +3,7 @@ package fiuba.algo3.TestEntrega1;
 import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Herramientas.Hacha;
 import fiuba.algo3.model.Herramientas.Pico;
+import fiuba.algo3.model.Herramientas.PicoFino;
 import fiuba.algo3.model.Materiales.Madera;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -105,4 +106,88 @@ public class TestMadera {
         Assert.assertEquals(durabilidadInicial, madera.obtenerDurabilidad());
     }
 
+    @Test
+    public void maderaChocaConUnPicoFinolYNoSeReduceSuDurabilidad(){
+        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
+        Madera madera = new Madera();
+
+        int durabilidadInicial = madera.obtenerDurabilidad();
+        picoFino.usarContra(madera);
+
+        Assert.assertEquals(durabilidadInicial, madera.obtenerDurabilidad());
+    }
+
+    @Test
+    public void maderaChocaConUnHachaDeMaderaCuatroVecesYNoSeRompe(){
+        Hacha hachaMadera = ConstructorHerramientas.construirHachaDeMadera();
+        Madera madera = new Madera();
+
+        hachaMadera.usarContra(madera);
+        hachaMadera.usarContra(madera);
+        hachaMadera.usarContra(madera);
+        hachaMadera.usarContra(madera);
+
+        Assert.assertNotSame(0, madera.obtenerDurabilidad());
+    }
+
+    @Test
+    public void maderaChocaConUnHachaDeMaderaCincoVecesYSeRompe(){
+        Hacha hachaMadera = ConstructorHerramientas.construirHachaDeMadera();
+        Madera madera = new Madera();
+
+        hachaMadera.usarContra(madera);
+        hachaMadera.usarContra(madera);
+        hachaMadera.usarContra(madera);
+        hachaMadera.usarContra(madera);
+        hachaMadera.usarContra(madera);
+
+        Assert.assertEquals(0, madera.obtenerDurabilidad());
+    }
+
+    @Test
+    public void maderaChocaConUnHachaDeMaderaMasDeCincoVecesYSigueRota(){
+        Hacha hachaMadera = ConstructorHerramientas.construirHachaDeMadera();
+        Madera madera = new Madera();
+
+        hachaMadera.usarContra(madera);
+        hachaMadera.usarContra(madera);
+        hachaMadera.usarContra(madera);
+        hachaMadera.usarContra(madera);
+        hachaMadera.usarContra(madera);
+        hachaMadera.usarContra(madera);
+        hachaMadera.usarContra(madera);
+
+        Assert.assertEquals(0, madera.obtenerDurabilidad());
+    }
+
+    @Test
+    public void maderaChocaConUnHachaDePiedraUnaVezYNoSeRompe(){
+        Hacha hachaPiedra = ConstructorHerramientas.construirHachaDePiedra();
+        Madera madera = new Madera();
+
+        hachaPiedra.usarContra(madera);
+
+        Assert.assertNotSame(0, madera.obtenerDurabilidad());
+    }
+
+    @Test
+    public void maderaChocaConUnHachaDePiedraDosVecesYSeRompe(){
+        Hacha hachaPiedra = ConstructorHerramientas.construirHachaDePiedra();
+        Madera madera = new Madera();
+
+        hachaPiedra.usarContra(madera);
+        hachaPiedra.usarContra(madera);
+
+        Assert.assertEquals(0, madera.obtenerDurabilidad());
+    }
+
+    @Test
+    public void maderaChocaConUnHachaDeMetalUnaVezYSeRompe(){
+        Hacha hachaMetal = ConstructorHerramientas.construirHachaDeMetal();
+        Madera madera = new Madera();
+
+        hachaMetal.usarContra(madera);
+
+        Assert.assertEquals(0, madera.obtenerDurabilidad());
+    }
 }
