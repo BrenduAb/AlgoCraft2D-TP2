@@ -23,12 +23,15 @@ public class ContenedorPrincipal extends BorderPane {
     GridPane gridPane;
     VBox contenedorCentral;
 
+    Stage stage;
+
     public ContenedorPrincipal(Stage stage, Jugador Jugador) {
         this.setControles(stage, Jugador);
         this.setMenu(stage);
         this.setCentro(Jugador);
         this.setConsola();
         this.setBotonera(Jugador);
+        this.stage = stage;
     }
 
     private void setControles(Stage stage, Jugador jugador) {
@@ -38,9 +41,9 @@ public class ContenedorPrincipal extends BorderPane {
     private void setBotonera(Jugador Jugador) {
 
         Button botonMover = new Button();
-        botonMover.setText("Arriba");
+        botonMover.setText("Mostrar inventario");
         this.vistaInventario = new VistaInventario();
-        BotonInventarioHandler moveButtonHandler = new BotonInventarioHandler(vistaInventario, Jugador);
+        BotonInventarioHandler moveButtonHandler = new BotonInventarioHandler(vistaInventario, Jugador, stage);
         botonMover.setOnAction(moveButtonHandler);
 
         Button botonDireccion = new Button();
@@ -71,10 +74,6 @@ public class ContenedorPrincipal extends BorderPane {
         contenedorCentral.setAlignment(Pos.CENTER);
         contenedorCentral.setSpacing(20);
         contenedorCentral.setPadding(new Insets(25));
-        /*        Image imagen = new Image("file:src/vista/imagenes/fondo-verde.jpg");
-        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        contenedorCentral.setBackground(new Background(imagenDeFondo));
-         */
 
         this.setCenter(contenedorCentral);
     }
@@ -99,7 +98,7 @@ public class ContenedorPrincipal extends BorderPane {
         return menuBar;
     }
 
-    public VistaJugador obtenerVistaJugador(){
+    public VistaJugador obtenerVistaJugador() {
         return this.vistaJugador;
     }
 
