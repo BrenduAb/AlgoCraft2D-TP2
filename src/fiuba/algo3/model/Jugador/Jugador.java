@@ -38,21 +38,21 @@ public class Jugador implements IOcupable {
 
     public void moverHaciaLaDerecha() {
         Posicion nuevPosicion = new Posicion(this.posicion.x() + 1, this.posicion.y());
-        this.mapa.moverOcupable(this,nuevPosicion);
+        this.mapa.moverOcupable(this, nuevPosicion);
     }
 
     public void moverHaciaLaIzquierda() {
         Posicion nuevPosicion = new Posicion(this.posicion.x() - 1, this.posicion.y());
-        this.mapa.moverOcupable(this,nuevPosicion);
+        this.mapa.moverOcupable(this, nuevPosicion);
     }
 
     public void moverHaciAbajo() {
-        Posicion nuevPosicion = new Posicion(this.posicion.x() , this.posicion.y() -1);
-        this.mapa.moverOcupable(this,nuevPosicion);
+        Posicion nuevPosicion = new Posicion(this.posicion.x(), this.posicion.y() + 1);
+        this.mapa.moverOcupable(this, nuevPosicion);
     }
 
     public void moverHaciArriba() {
-        Posicion nuevPosicion = new Posicion(this.posicion.x() , this.posicion.y() +1);
-        this.mapa.moverOcupable(this,nuevPosicion);
+        Posicion nuevPosicion = new Posicion(this.posicion.x(), this.posicion.y() - 1);
+        this.mapa.moverOcupable(this, nuevPosicion);
     }
 }

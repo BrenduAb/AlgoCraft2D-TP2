@@ -3,8 +3,10 @@ package fiuba.algo3.model;
 import fiuba.algo3.model.Jugador.Jugador;
 import fiuba.algo3.model.Mapa.Mapa;
 import fiuba.algo3.model.Mapa.Posicion;
+import fiuba.algo3.model.Materiales.Diamante;
 import fiuba.algo3.model.Materiales.Madera;
 import fiuba.algo3.model.Materiales.Metal;
+import fiuba.algo3.model.Materiales.Piedra;
 
 public class
 
@@ -48,8 +50,16 @@ Juego {
         for (int x = 5; x < 7; x++) {
             for (int y = 1; y < 3; y++) {
                 Posicion posicion = new Posicion(x, y);
-                Metal metal = new Metal();
-                mapa.ocuparTerreno(posicion, metal);
+                Piedra piedra = new Piedra();
+                mapa.ocuparTerreno(posicion, piedra);
+            }
+        }
+
+        for (int x = 9; x < 11; x++) {
+            for (int y = 1; y < 3; y++) {
+                Posicion posicion = new Posicion(x, y);
+                Diamante diamante = new Diamante();
+                mapa.ocuparTerreno(posicion, diamante);
             }
         }
     }
