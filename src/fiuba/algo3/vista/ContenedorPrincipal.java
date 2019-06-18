@@ -42,8 +42,8 @@ public class ContenedorPrincipal extends BorderPane {
 
         Button botonMover = new Button();
         botonMover.setText("Mostrar inventario");
-        this.vistaInventario = new VistaInventario();
-        BotonInventarioHandler moveButtonHandler = new BotonInventarioHandler(vistaInventario, Jugador, stage);
+        this.vistaInventario = new VistaInventario(stage);
+        BotonInventarioHandler moveButtonHandler = new BotonInventarioHandler(vistaInventario, Jugador);
         botonMover.setOnAction(moveButtonHandler);
 
         Button botonDireccion = new Button();
