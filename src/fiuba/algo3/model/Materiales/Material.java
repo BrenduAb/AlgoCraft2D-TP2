@@ -1,11 +1,12 @@
 package fiuba.algo3.model.Materiales;
 
 import fiuba.algo3.Excepciones.MaterialRotoException;
+import fiuba.algo3.model.Contratos.IGuardable;
 import fiuba.algo3.model.Contratos.IOcupable;
 import fiuba.algo3.model.Golpe.Golpeable;
 import fiuba.algo3.model.Mapa.Posicion;
 
-public abstract class Material implements Golpeable, IOcupable {
+public abstract class Material implements Golpeable, IOcupable, IGuardable {
     protected  int durabilidad;
     private Posicion posicion;
     public void desgastar(int fuerza) {
