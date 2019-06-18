@@ -38,7 +38,7 @@ public class TestJugador {
 
         Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
 
-        IGuardable hacha = ConstructorHerramientas.construirPicoDeMadera();
+        IGuardable hacha = ConstructorHerramientas.construirHachaDeMadera();
 
         Assert.assertEquals(true, true);
     }

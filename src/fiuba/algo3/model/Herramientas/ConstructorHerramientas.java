@@ -19,7 +19,7 @@ public class ConstructorHerramientas {
 
     public static Pico construirPicoDeMetal(){
         Golpe golpeDePico = new GolpePico(12);
-        Desgaste desgaste = new DesgasteAbrupto(400, 12);
+        Desgaste desgaste = new DesgasteAbrupto(400, 10);
         Pico pico = new Pico(desgaste,golpeDePico);
         return pico;
     }
