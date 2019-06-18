@@ -7,9 +7,7 @@ import fiuba.algo3.model.Mapa.Mapa;
 import fiuba.algo3.model.Mapa.Posicion;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 
 public class VistaJugador {
 
@@ -50,12 +48,6 @@ public class VistaJugador {
             }
         }
     }
-    private Image createImage(Color color) {
-        WritableImage image = new WritableImage(1, 1);
-        image.getPixelWriter().setColor(0, 0, color);
-        return image ;
-    }
-
 
     public void update() {
         this.dibujar();

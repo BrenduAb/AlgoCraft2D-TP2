@@ -1,5 +1,7 @@
 package fiuba.algo3.model.Durabilidad;
 
+import fiuba.algo3.Excepciones.HerramientaRotaException;
+
 public class DesgasteAbrupto extends Desgaste{
 
     private int cantidadUsosPosibles;
@@ -15,7 +17,7 @@ public class DesgasteAbrupto extends Desgaste{
     public void desgastar(int fuerza) {
         this.vecesUsado += 1;
         if (cantidadUsosPosibles <= vecesUsado){
-            this.durabilidad = 0;
+            throw new HerramientaRotaException();
         }
     }
 }
