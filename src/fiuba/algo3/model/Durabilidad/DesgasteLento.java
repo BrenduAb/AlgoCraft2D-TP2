@@ -4,7 +4,7 @@ import fiuba.algo3.Excepciones.HerramientaRotaException;
 
 public class DesgasteLento extends Desgaste {
 
-    public DesgasteLento(int durabilidad) {
+    public DesgasteLento(double durabilidad) {
         super(durabilidad);
     }
 

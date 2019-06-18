@@ -3,7 +3,7 @@ package fiuba.algo3.model.Durabilidad;
 import fiuba.algo3.Excepciones.HerramientaRotaException;
 
 public class DesgasteMinimo extends Desgaste {
-    public DesgasteMinimo(int durabilidad) {
+    public DesgasteMinimo(double durabilidad) {
         super(durabilidad);
     }
 

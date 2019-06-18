@@ -17,7 +17,7 @@ public class TestPico {
 
         Assert.assertNotNull(picoMadera);
         Assert.assertEquals(fuerzaPicoMadera, picoMadera.obtenerFuerza());
-        Assert.assertEquals(durabilidadPicoMadera, picoMadera.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoMadera, picoMadera.obtenerDurabilidad(),0);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class TestPico {
 
         Assert.assertNotNull(picoPiedra);
         Assert.assertEquals(fuerzaPicoPiedra, picoPiedra.obtenerFuerza());
-        Assert.assertEquals(durabilidadPicoPiedra, picoPiedra.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoPiedra, picoPiedra.obtenerDurabilidad(),0);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class TestPico {
 
         Assert.assertNotNull(picoMetal);
         Assert.assertEquals(fuerzaPicoMetal, picoMetal.obtenerFuerza());
-        Assert.assertEquals(durabilidadPicoMetal, picoMetal.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoMetal, picoMetal.obtenerDurabilidad(),0);
     }
 
     @Test
@@ -49,13 +49,13 @@ public class TestPico {
         Pico picoMadera = ConstructorHerramientas.construirPicoDeMadera();
         Madera madera = new Madera();
 
-        int durabilidadPicoMadera = picoMadera.obtenerDurabilidad();
+        double durabilidadPicoMadera = picoMadera.obtenerDurabilidad();
         int desgastePicoMadera = picoMadera.obtenerFuerza();
 
 
         picoMadera.usarContra(madera);
 
-        Assert.assertEquals(durabilidadPicoMadera-desgastePicoMadera, picoMadera.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoMadera-desgastePicoMadera, picoMadera.obtenerDurabilidad(),0);
     }
 
     @Test
@@ -63,12 +63,12 @@ public class TestPico {
         Pico picoMadera = ConstructorHerramientas.construirPicoDeMadera();
         Piedra piedra = new Piedra();
 
-        int durabilidadPicoMadera = picoMadera.obtenerDurabilidad();
+        double durabilidadPicoMadera = picoMadera.obtenerDurabilidad();
         int desgastePicoMadera = picoMadera.obtenerFuerza();
 
         picoMadera.usarContra(piedra);
 
-        Assert.assertEquals(durabilidadPicoMadera-desgastePicoMadera, picoMadera.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoMadera-desgastePicoMadera, picoMadera.obtenerDurabilidad(),0);
     }
 
     @Test
@@ -76,12 +76,12 @@ public class TestPico {
         Pico picoMadera = ConstructorHerramientas.construirPicoDeMadera();
         Metal metal = new Metal();
 
-        int durabilidadPicoMadera = picoMadera.obtenerDurabilidad();
+        double durabilidadPicoMadera = picoMadera.obtenerDurabilidad();
         int desgastePicoMadera = picoMadera.obtenerFuerza();
 
         picoMadera.usarContra(metal);
 
-        Assert.assertEquals(durabilidadPicoMadera-desgastePicoMadera, picoMadera.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoMadera-desgastePicoMadera, picoMadera.obtenerDurabilidad(),0);
     }
 
     @Test
@@ -89,12 +89,12 @@ public class TestPico {
         Pico picoMadera = ConstructorHerramientas.construirPicoDeMadera();
         Diamante diamante = new Diamante();
 
-        int durabilidadPicoMadera = picoMadera.obtenerDurabilidad();
+        double durabilidadPicoMadera = picoMadera.obtenerDurabilidad();
         int desgastePicoMadera = picoMadera.obtenerFuerza();
 
         picoMadera.usarContra(diamante);
 
-        Assert.assertEquals(durabilidadPicoMadera-desgastePicoMadera, picoMadera.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoMadera-desgastePicoMadera, picoMadera.obtenerDurabilidad(),0);
     }
 
     @Test
@@ -102,11 +102,11 @@ public class TestPico {
         Pico picoPiedra = ConstructorHerramientas.construirPicoDePiedra();
         Madera madera = new Madera();
 
-        int durabilidadPicoPiedra = picoPiedra.obtenerDurabilidad();
+        double durabilidadPicoPiedra = picoPiedra.obtenerDurabilidad();
 
         picoPiedra.usarContra(madera);
 
-        Assert.assertEquals(durabilidadPicoPiedra-=(picoPiedra.obtenerFuerza()/1.5), picoPiedra.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoPiedra-=(picoPiedra.obtenerFuerza()/1.5), picoPiedra.obtenerDurabilidad(),0);
 
     }
 
@@ -115,11 +115,11 @@ public class TestPico {
         Pico picoPiedra = ConstructorHerramientas.construirPicoDePiedra();
         Piedra piedra = new Piedra();
 
-        int durabilidadPicoPiedra = picoPiedra.obtenerDurabilidad();
+        double durabilidadPicoPiedra = picoPiedra.obtenerDurabilidad();
 
         picoPiedra.usarContra(piedra);
 
-        Assert.assertEquals(durabilidadPicoPiedra-=(picoPiedra.obtenerFuerza()/1.5), picoPiedra.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoPiedra-=(picoPiedra.obtenerFuerza()/1.5), picoPiedra.obtenerDurabilidad(),0);
     }
 
     @Test
@@ -127,11 +127,11 @@ public class TestPico {
         Pico picoPiedra = ConstructorHerramientas.construirPicoDePiedra();
         Metal metal = new Metal();
 
-        int durabilidadPicoPiedra = picoPiedra.obtenerDurabilidad();
+        double durabilidadPicoPiedra = picoPiedra.obtenerDurabilidad();
 
         picoPiedra.usarContra(metal);
 
-        Assert.assertEquals(durabilidadPicoPiedra-=(picoPiedra.obtenerFuerza()/1.5), picoPiedra.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoPiedra-=(picoPiedra.obtenerFuerza()/1.5), picoPiedra.obtenerDurabilidad(),0);
     }
 
     @Test
@@ -139,11 +139,11 @@ public class TestPico {
         Pico picoPiedra = ConstructorHerramientas.construirPicoDePiedra();
         Diamante diamante = new Diamante();
 
-        int durabilidadPicoPiedra = picoPiedra.obtenerDurabilidad();
+        double durabilidadPicoPiedra = picoPiedra.obtenerDurabilidad();
 
         picoPiedra.usarContra(diamante);
 
-        Assert.assertEquals(durabilidadPicoPiedra-=(picoPiedra.obtenerFuerza()/1.5), picoPiedra.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoPiedra-=(picoPiedra.obtenerFuerza()/1.5), picoPiedra.obtenerDurabilidad(),0);
     }
 
     @Test
@@ -151,11 +151,11 @@ public class TestPico {
         Pico picoMetal = ConstructorHerramientas.construirPicoDeMetal();
         Madera madera = new Madera();
 
-        int durabilidadPicoMetal = picoMetal.obtenerDurabilidad();
+        double durabilidadPicoMetal = picoMetal.obtenerDurabilidad();
 
         picoMetal.usarContra(madera);
 
-        Assert.assertEquals(durabilidadPicoMetal, picoMetal.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoMetal, picoMetal.obtenerDurabilidad(),0);
 
     }
 
@@ -164,11 +164,11 @@ public class TestPico {
         Pico picoMetal = ConstructorHerramientas.construirPicoDeMetal();
         Piedra piedra = new Piedra();
 
-        int durabilidadPicoMetal = picoMetal.obtenerDurabilidad();
+        double durabilidadPicoMetal = picoMetal.obtenerDurabilidad();
 
         picoMetal.usarContra(piedra);
 
-        Assert.assertEquals(durabilidadPicoMetal, picoMetal.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoMetal, picoMetal.obtenerDurabilidad(),0);
 
     }
 
@@ -177,11 +177,11 @@ public class TestPico {
         Pico picoMetal = ConstructorHerramientas.construirPicoDeMetal();
         Metal metal = new Metal();
 
-        int durabilidadPicoMetal = picoMetal.obtenerDurabilidad();
+        double durabilidadPicoMetal = picoMetal.obtenerDurabilidad();
 
         picoMetal.usarContra(metal);
 
-        Assert.assertEquals(durabilidadPicoMetal, picoMetal.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoMetal, picoMetal.obtenerDurabilidad(),0);
     }
 
     @Test
@@ -189,11 +189,11 @@ public class TestPico {
         Pico picoMetal = ConstructorHerramientas.construirPicoDeMetal();
         Diamante diamante = new Diamante();
 
-        int durabilidadPicoMetal = picoMetal.obtenerDurabilidad();
+        double durabilidadPicoMetal = picoMetal.obtenerDurabilidad();
 
         picoMetal.usarContra(diamante);
 
-        Assert.assertEquals(durabilidadPicoMetal, picoMetal.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadPicoMetal, picoMetal.obtenerDurabilidad(),0);
     }
 
 /*
@@ -323,7 +323,7 @@ public class TestPico {
         Pico picoMadera = ConstructorHerramientas.construirPicoDeMadera();
         Material metal = new Metal();
 
-        int durabilidadInicialPicoMadera = picoMadera.obtenerDurabilidad();
+        double durabilidadInicialPicoMadera = picoMadera.obtenerDurabilidad();
 
         for(int i = 1; i <= 49; i++) {
             picoMadera.usarContra(metal);
@@ -346,13 +346,13 @@ public class TestPico {
 
 
     @Test
-    public void picoDePiedraSeUsaContraCualquierMaterial66VecesYNoSeRompe(){
+    public void picoDePiedraSeUsaContraCualquierMaterial75VecesYNoSeRompe(){
         Pico picoPiedra = ConstructorHerramientas.construirPicoDePiedra();
         Material madera = new Madera();
 
-        int durabilidadInicialPicoPiedra = picoPiedra.obtenerDurabilidad();
+        double durabilidadInicialPicoPiedra = picoPiedra.obtenerDurabilidad();
 
-        for(int i = 1; i <= 66; i++) {
+        for(int i = 1; i <= 75; i++) {
             picoPiedra.usarContra(madera);
         }
 
@@ -365,7 +365,7 @@ public class TestPico {
         Pico picoPiedra = ConstructorHerramientas.construirPicoDePiedra();
         Material diamante = new Diamante();
 
-        for(int i = 1; i <= 67; i++) {
+        for(int i = 1; i <= 76; i++) {
             picoPiedra.usarContra(diamante);
         }
     }
@@ -375,13 +375,13 @@ public class TestPico {
         Pico picoMetal = ConstructorHerramientas.construirPicoDeMetal();
         Material madera = new Madera();
 
-        int durabilidadInicialPicoMetal = picoMetal.obtenerDurabilidad();
+        double durabilidadInicialPicoMetal = picoMetal.obtenerDurabilidad();
 
         for(int i = 1; i <= 9; i++) {
             picoMetal.usarContra(madera);
         }
 
-        Assert.assertEquals(durabilidadInicialPicoMetal, picoMetal.obtenerDurabilidad());
+        Assert.assertEquals(durabilidadInicialPicoMetal, picoMetal.obtenerDurabilidad(),0);
         Assert.assertNotSame(0, picoMetal.obtenerDurabilidad());
     }
 
