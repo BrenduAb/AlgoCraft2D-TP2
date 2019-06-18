@@ -5,7 +5,7 @@ public class DesgasteAbrupto extends Desgaste{
     private int cantidadUsosPosibles;
     private int vecesUsado;
 
-    public DesgasteAbrupto(int durabilidad, int cantUsos) {
+    public DesgasteAbrupto(double durabilidad, int cantUsos) {
         super(durabilidad);
         cantidadUsosPosibles = cantUsos;
         vecesUsado = 0;

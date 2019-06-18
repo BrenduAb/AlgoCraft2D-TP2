@@ -2,7 +2,7 @@ package fiuba.algo3.model.Durabilidad;
 
 public class DesgasteMedio extends Desgaste {
 
-    public DesgasteMedio(int durabilidad) {
+    public DesgasteMedio(double durabilidad) {
         super(durabilidad);
     }
 

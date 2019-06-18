@@ -22,7 +22,7 @@ public abstract class Herramienta implements IGuardable {
 
     public abstract void desgastar(int danio);
 
-    public int obtenerDurabilidad() {
+    public double obtenerDurabilidad() {
         return this.desgaste.obtenerDurabilidad();
     }
 }
