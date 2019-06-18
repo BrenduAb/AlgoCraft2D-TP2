@@ -19,6 +19,7 @@ public class ContenedorPrincipal extends BorderPane {
 
     BarraDeMenu menuBar;
     VistaJugador vistaJugador;
+    VistaInventario vistaInventario;
     GridPane gridPane;
     VBox contenedorCentral;
 
@@ -38,7 +39,8 @@ public class ContenedorPrincipal extends BorderPane {
 
         Button botonMover = new Button();
         botonMover.setText("Arriba");
-        BotonInventarioHandler moveButtonHandler = new BotonInventarioHandler(vistaJugador, Jugador);
+        this.vistaInventario = new VistaInventario();
+        BotonInventarioHandler moveButtonHandler = new BotonInventarioHandler(vistaInventario, Jugador);
         botonMover.setOnAction(moveButtonHandler);
 
         Button botonDireccion = new Button();
