@@ -1,6 +1,7 @@
 package fiuba.algo3.TestEntrega1;
 
 
+import fiuba.algo3.Excepciones.MaterialRotoException;
 import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Herramientas.Hacha;
 import fiuba.algo3.model.Herramientas.Pico;
@@ -136,7 +137,7 @@ public class TestDiamante {
         Assert.assertNotSame(0, diamante.obtenerDurabilidad());
     }
 
-    @Test
+    @Test(expected = MaterialRotoException.class)
     public void diamanteChocaConUnPicoFinoCincoVecesYSeRompe(){
         PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
         Diamante diamante = new Diamante();
@@ -146,22 +147,6 @@ public class TestDiamante {
         picoFino.usarContra(diamante);
         picoFino.usarContra(diamante);
         picoFino.usarContra(diamante);
-
-        Assert.assertEquals(0, diamante.obtenerDurabilidad());
     }
 
-    @Test
-    public void diamanteChocaConUnPicoFinoMasDeCincoVecesYSigueRota(){
-        PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
-        Diamante diamante = new Diamante();
-
-        picoFino.usarContra(diamante);
-        picoFino.usarContra(diamante);
-        picoFino.usarContra(diamante);
-        picoFino.usarContra(diamante);
-        picoFino.usarContra(diamante);
-        picoFino.usarContra(diamante);
-
-        Assert.assertEquals(0, diamante.obtenerDurabilidad());
-    }
 }

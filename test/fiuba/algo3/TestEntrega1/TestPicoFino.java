@@ -1,5 +1,6 @@
 package fiuba.algo3.TestEntrega1;
 
+import fiuba.algo3.Excepciones.HerramientaRotaException;
 import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Herramientas.PicoFino;
 import fiuba.algo3.model.Materiales.*;
@@ -132,7 +133,7 @@ public class TestPicoFino {
         Assert.assertNotSame(0, picoFino.obtenerDurabilidad());
     }
 
-    @Test
+    @Test(expected = HerramientaRotaException.class)
     public void picoFinoSeUsaContraCualquierMaterial50VecesYSeRompe(){
         PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
         Material madera = new Madera();
@@ -140,11 +141,9 @@ public class TestPicoFino {
         for(int i = 1; i <= 50; i++) {
             picoFino.usarContra(madera);
         }
-
-        Assert.assertEquals(0, picoFino.obtenerDurabilidad());
     }
 
-    @Test
+    @Test(expected = HerramientaRotaException.class)
     public void picoFinoSeUsaContraCualquierMaterialMasDe50VecesYSigueRota() {
         PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
         Material piedra = new Piedra();
@@ -152,7 +151,5 @@ public class TestPicoFino {
         for (int i = 1; i <= 60; i++) {
             picoFino.usarContra(piedra);
         }
-
-        Assert.assertEquals(0, picoFino.obtenerDurabilidad());
     }
 }

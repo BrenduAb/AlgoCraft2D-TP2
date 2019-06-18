@@ -1,5 +1,6 @@
 package fiuba.algo3.TestEntrega1;
 
+import fiuba.algo3.Excepciones.MaterialRotoException;
 import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Herramientas.Hacha;
 import fiuba.algo3.model.Herramientas.Pico;
@@ -129,7 +130,7 @@ public class TestPiedra {
         Assert.assertNotSame(0, piedra.obtenerDurabilidad());
     }
 
-    @Test
+    @Test(expected = MaterialRotoException.class)
     public void piedraChocaConUnPicoDeMaderaQuinceVecesYSeRompe(){
         Pico picoMadera = ConstructorHerramientas.construirPicoDeMadera();
         Piedra piedra = new Piedra();
@@ -137,21 +138,8 @@ public class TestPiedra {
         for(int i = 1; i <= 15; i++) {
             picoMadera.usarContra(piedra);
         }
-
-        Assert.assertEquals(0, piedra.obtenerDurabilidad());
     }
 
-    @Test
-    public void piedraChocaConUnPicoDeMaderaMasDeQuinceVecesYSigueRota(){
-        Pico picoMadera = ConstructorHerramientas.construirPicoDeMadera();
-        Piedra piedra = new Piedra();
-
-        for(int i = 1; i <= 20; i++) {
-            picoMadera.usarContra(piedra);
-        }
-
-        Assert.assertEquals(0, piedra.obtenerDurabilidad());
-    }
 
     @Test
     public void piedraChocaConUnPicoDePiedraSieteVecesYNoSeRompe(){
@@ -165,7 +153,7 @@ public class TestPiedra {
         Assert.assertNotSame(0, piedra.obtenerDurabilidad());
     }
 
-    @Test
+    @Test(expected = MaterialRotoException.class)
     public void piedraChocaConUnPicoDePiedraOchoVecesYSeRompe(){
         Pico picoPiedra = ConstructorHerramientas.construirPicoDePiedra();
         Piedra piedra = new Piedra();
@@ -173,8 +161,6 @@ public class TestPiedra {
         for(int i = 1; i <= 8; i++) {
             picoPiedra.usarContra(piedra);
         }
-
-        Assert.assertEquals(0, piedra.obtenerDurabilidad());
     }
 
     @Test
@@ -188,7 +174,7 @@ public class TestPiedra {
         Assert.assertNotSame(0, piedra.obtenerDurabilidad());
     }
 
-    @Test
+    @Test(expected = MaterialRotoException.class)
     public void piedraChocaConUnPicoDeMetalTresVecesYSeRompe(){
         Pico picoMetal = ConstructorHerramientas.construirPicoDeMetal();
         Piedra piedra = new Piedra();
@@ -196,7 +182,5 @@ public class TestPiedra {
         picoMetal.usarContra(piedra);
         picoMetal.usarContra(piedra);
         picoMetal.usarContra(piedra);
-
-        Assert.assertEquals(0, piedra.obtenerDurabilidad());
     }
 }
