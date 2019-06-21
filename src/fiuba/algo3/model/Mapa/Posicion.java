@@ -47,4 +47,24 @@ public class Posicion {
 
         return  true;
     }
+
+    public Posicion posicionSiguienteDerecha(){
+        int nuevaX = this.x + 1;
+        return new Posicion(nuevaX, this.y);
+    }
+
+    public Posicion posicionSiguienteIzquierda(){
+        int nuevaX = this.x - 1;
+        return new Posicion(nuevaX, this.y);
+    }
+
+    public Posicion posicionSiguienteAbajo(){
+        int nuevaY = this.y + 1;
+        return new Posicion(this.x, nuevaY);
+    }
+
+    public Posicion posicionSiguienteArriba(){
+        int nuevaY = this.y - 1;
+        return new Posicion(this.x, nuevaY);
+    }
 }

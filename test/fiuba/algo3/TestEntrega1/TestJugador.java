@@ -60,7 +60,7 @@ public class TestJugador {
     }
 
     @Test
-    public void PosicionoAlJugadorEnUnMapaYLoMuevoParaLaDerachaYLaCeldaAnteriorQuedaVacia() {
+    public void PosicionoAlJugadorEnUnMapaYLoMuevoParaLaDerechaYLaCeldaAnteriorQuedaVacia() {
         CleanSingleton.cleanMapa();
 
         Mapa mapa = Mapa.getInstance();
