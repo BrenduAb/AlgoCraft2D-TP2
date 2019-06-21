@@ -1,8 +1,8 @@
 package fiuba.algo3.vista;
 
-import fiuba.algo3.vista.eventos.OpcionAcercaDeEventHandler;
-import fiuba.algo3.vista.eventos.OpcionPantallaCompletaEventHandler;
-import fiuba.algo3.vista.eventos.OpcionSalirEventHandler;
+import fiuba.algo3.controller.OpcionAcercaDeEventHandler;
+import fiuba.algo3.controller.OpcionPantallaCompletaEventHandler;
+import fiuba.algo3.controller.OpcionSalirEventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;

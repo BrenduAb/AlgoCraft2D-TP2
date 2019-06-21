@@ -1,8 +1,8 @@
 package fiuba.algo3.vista;
 
 import fiuba.algo3.model.Jugador.Jugador;
-import fiuba.algo3.vista.eventos.BotonDireccionHandler;
-import fiuba.algo3.vista.eventos.BotonInventarioHandler;
+import fiuba.algo3.controller.BotonDireccionHandler;
+import fiuba.algo3.controller.BotonInventarioHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

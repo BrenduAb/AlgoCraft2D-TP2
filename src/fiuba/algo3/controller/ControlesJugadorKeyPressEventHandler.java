@@ -1,4 +1,4 @@
-package fiuba.algo3.vista.eventos;
+package fiuba.algo3.controller;
 
 import fiuba.algo3.Excepciones.CeldaOcupadaException;
 import fiuba.algo3.Excepciones.PosicionInvalidaException;

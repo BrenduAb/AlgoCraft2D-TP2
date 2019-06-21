@@ -1,7 +1,7 @@
 package fiuba.algo3.vista;
 
 import fiuba.algo3.model.Juego;
-import fiuba.algo3.vista.eventos.ControlesJugadorKeyPressEventHandler;
+import fiuba.algo3.controller.ControlesJugadorKeyPressEventHandler;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
