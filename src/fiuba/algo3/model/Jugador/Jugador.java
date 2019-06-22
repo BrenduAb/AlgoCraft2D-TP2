@@ -78,4 +78,8 @@ public class Jugador implements IOcupable {
             throw ex;
         }
     }
+
+    public Inventario obtenerInventario(){
+        return this.inventario;
+    }
 }
