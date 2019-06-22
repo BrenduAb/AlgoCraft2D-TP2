@@ -26,7 +26,7 @@ public class VistaInventario extends Stage {
     }
     public void mostrar(Inventario inventario){
 
-        this.setMesaCrafteo();
+//        this.setMesaCrafteo();
 
         this.setInventario(inventario);
 
@@ -80,10 +80,5 @@ public class VistaInventario extends Stage {
     //Estuve queriendo agregar la mesa de crafteo en la misma ventana que en el inventario pero no me salio
     public void setMesaCrafteo(){
 
-        VBox contenedorVertical = new VBox();
-        contenedorVertical.setSpacing(10);
-        contenedorVertical.setPadding(new Insets(15));
-        contenedorVertical.setAlignment(Pos.TOP_CENTER);
-        contenedorVertical.setStyle("-fx-background-color: black;");
     }
 }
