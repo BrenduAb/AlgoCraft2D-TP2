@@ -54,7 +54,7 @@ public class VistaInventario extends Stage {
                 }
                 Image imagen = new Image("file:src/fiuba/algo3/vista/imagenes/inventarioVacio.png");
                 if (guardable != null){
-                    if(guardable.getClass().getPackageName() == "fiuba.algo3.model.Herramientas"){
+                    if(guardable.getClass().getPackage().getName() == "fiuba.algo3.model.Herramientas"){
                         Herramienta herramienta = (Herramienta)guardable;
                         String ruta = "file:src/fiuba/algo3/vista/imagenes/" + guardable.getClass().getName() +
                                 herramienta.obtenerFuerza() + ".png";
