@@ -42,7 +42,7 @@ public class ContenedorPrincipal extends BorderPane {
 
         Button botonMover = new Button();
         botonMover.setText("Mostrar inventario");
-        this.vistaInventario = new VistaInventario(stage);
+        this.vistaInventario = new VistaInventario(stage,Jugador);
         BotonInventarioHandler moveButtonHandler = new BotonInventarioHandler(vistaInventario, Jugador);
         botonMover.setOnAction(moveButtonHandler);
 
@@ -82,7 +82,7 @@ public class ContenedorPrincipal extends BorderPane {
 
         // TODO cambiar por el modelo de Consola...
         Label etiqueta = new Label();
-        etiqueta.setText("consola...");
+        etiqueta.setText("Hola!... me llamo Manu. ¡Vamos a jugar!");
         etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
         etiqueta.setTextFill(Color.WHITE);
 

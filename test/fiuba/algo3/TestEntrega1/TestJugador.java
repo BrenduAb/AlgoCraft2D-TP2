@@ -1,9 +1,6 @@
 package fiuba.algo3.TestEntrega1;
 
-import fiuba.algo3.Excepciones.CeldaOcupadaException;
-import fiuba.algo3.Excepciones.HerramientaRotaException;
-import fiuba.algo3.Excepciones.JugarSinHerramientaEquipadaException;
-import fiuba.algo3.Excepciones.PosicionInvalidaException;
+import fiuba.algo3.Excepciones.*;
 import fiuba.algo3.model.Contratos.IGuardable;
 import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Herramientas.Herramienta;
@@ -172,8 +169,11 @@ public class TestJugador {
 
         Material material = new Madera();
 
-        jugador.golpearMaterial(material);
+        try {
+            jugador.golpearMaterial(material);
+        }catch (MaterialRotoException ex){
 
+        }
         Assert.assertEquals(cantidadDeElementos + 1, jugador.obtenerCantidadDeObjetosDelInventario());
     }
 

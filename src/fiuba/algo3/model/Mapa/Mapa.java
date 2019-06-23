@@ -1,7 +1,10 @@
 package fiuba.algo3.model.Mapa;
 
+import fiuba.algo3.Excepciones.MaterialRotoException;
 import fiuba.algo3.Excepciones.PosicionInvalidaException;
 import fiuba.algo3.model.Contratos.IOcupable;
+import fiuba.algo3.model.Jugador.Jugador;
+import fiuba.algo3.model.Materiales.Material;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,5 +56,13 @@ public class Mapa {
         Posicion posicionActual = ocupable.obtenerPosicionActual();
         this.ocuparTerreno(nuevoPosicion, ocupable);
         this.liberarTerreno(posicionActual);
+    }
+
+    public void chocarJugadorConMaterial(Jugador jugador, Material material){
+        try {
+            jugador.golpearMaterial(material);
+        }catch (MaterialRotoException ex){
+            this.mapa.get(material.obtenerPosicionActual()).liberarCelda();
+        }
     }
 }
