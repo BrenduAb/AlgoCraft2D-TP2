@@ -35,7 +35,6 @@ public class VistaInventario extends Stage {
 
     public void armarContenedorInventario(Inventario inventario) {
         this.contenedorInventario = new GridPane();
-        contenedorInventario.set
         contenedorInventario.setHgap(3);
         contenedorInventario.setVgap(3);
         contenedorInventario.setStyle("-fx-background-color: black;");
