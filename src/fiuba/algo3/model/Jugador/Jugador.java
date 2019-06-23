@@ -73,6 +73,7 @@ public class Jugador implements IOcupable {
             this.herramientaEquipada.usarContra(material);
         } catch (MaterialRotoException ex) {
             this.inventario.agregarAlInventario(material);
+            throw ex;
         } catch (HerramientaRotaException ex) {
             this.herramientaEquipada = null;
             throw ex;

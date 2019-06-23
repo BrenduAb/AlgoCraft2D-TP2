@@ -1,5 +1,6 @@
 package fiuba.algo3.model;
 
+import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Jugador.Jugador;
 import fiuba.algo3.model.Mapa.Mapa;
 import fiuba.algo3.model.Mapa.Posicion;
@@ -28,6 +29,8 @@ Juego {
         this.inicializarTerreno(mapa);
 
         this.jugador = jugador;
+
+        jugador.equipar(ConstructorHerramientas.construirHachaDeMadera());
     }
 
     private void inicializarTerreno(Mapa mapa) {
