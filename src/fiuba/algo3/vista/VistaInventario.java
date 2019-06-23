@@ -15,32 +15,39 @@ import javafx.stage.Stage;
 
 public class VistaInventario extends Stage {
 
-    GridPane grillaInventario;
+    GridPane contenedorInventario;
     VBox contenedorMesaCrafteo;
     BarraDeMenu menuBar;
 
 
     public VistaInventario(Stage parent){
+        this.setTitle("Inventario");
         this.initOwner(parent);
         this.initModality(Modality.APPLICATION_MODAL);
     }
     public void mostrar(Inventario inventario){
 
-//        this.setMesaCrafteo();
-
-        this.setInventario(inventario);
-
+        this.armarContenedorInventario(inventario);
+        Scene scene = new Scene(this.contenedorInventario, 640, 480);
+        this.setScene(scene);
         this.showAndWait();
     }
 
-    public void setInventario(Inventario inventario){
-        this.grillaInventario = new GridPane();
-        grillaInventario.setHgap(2);
-        grillaInventario.setVgap(2);
-        grillaInventario.setStyle("-fx-background-color: whitesmoke;");
+    public void armarContenedorInventario(Inventario inventario) {
+        this.contenedorInventario = new GridPane();
+        contenedorInventario.setHgap(3);
+        contenedorInventario.setVgap(3);
+        contenedorInventario.setStyle("-fx-background-color: black;");
+        this.contenedorInventario.add(this.dibujarMesaCrafteo(inventario), 0, 1);
+        this.contenedorInventario.add(this.dibujarInventario(inventario), 0, 2);
+
+    }
+
+    public VBox dibujarInventario(Inventario inventario){
+        GridPane grillaInventario = new GridPane();
+        grillaInventario.setHgap(1);
+        grillaInventario.setVgap(1);
         grillaInventario.setAlignment(Pos.BOTTOM_CENTER);
-        Scene scene = new Scene(grillaInventario, 640, 480);
-        this.setScene(scene);
         int alto = 3;
         int ancho = 10;
         int posicion = 0;
@@ -54,7 +61,7 @@ public class VistaInventario extends Stage {
                 }
                 Image imagen = new Image("file:src/fiuba/algo3/vista/imagenes/inventarioVacio.png");
                 if (guardable != null){
-                    if(guardable.getClass().getPackageName() == "fiuba.algo3.model.Herramientas"){
+                    if(guardable.getClass().getPackage().getName() == "fiuba.algo3.model.Herramientas"){
                         Herramienta herramienta = (Herramienta)guardable;
                         String ruta = "file:src/fiuba/algo3/vista/imagenes/" + guardable.getClass().getName() +
                                 herramienta.obtenerFuerza() + ".png";
@@ -75,10 +82,49 @@ public class VistaInventario extends Stage {
         VBox contenedorVertical = new VBox(grillaInventario);
         contenedorVertical.setSpacing(10);
         contenedorVertical.setPadding(new Insets(15));
+        return contenedorVertical;
     }
 
     //Estuve queriendo agregar la mesa de crafteo en la misma ventana que en el inventario pero no me salio
-    public void setMesaCrafteo(){
+    public VBox dibujarMesaCrafteo(Inventario inventario){
+        GridPane grillaInventario = new GridPane();
+        grillaInventario.setHgap(1);
+        grillaInventario.setVgap(1);
+        grillaInventario.setAlignment(Pos.BOTTOM_CENTER);
+        int alto = 3;
+        int ancho = 10;
+        int posicion = 0;
 
+        for (int y = 0 ; y < alto ; y++) {
+            for (int x = 0 ; x < ancho; x++) {
+                IGuardable guardable = null;
+                if (posicion < inventario.obtenerCantidadDeObjetos()){
+                    guardable = inventario.obtenerGuardable(posicion);
+                    posicion++;
+                }
+                Image imagen = new Image("file:src/fiuba/algo3/vista/imagenes/inventarioVacio.png");
+                if (guardable != null){
+                    if(guardable.getClass().getPackage().getName() == "fiuba.algo3.model.Herramientas"){
+                        Herramienta herramienta = (Herramienta)guardable;
+                        String ruta = "file:src/fiuba/algo3/vista/imagenes/" + guardable.getClass().getName() +
+                                herramienta.obtenerFuerza() + ".png";
+                        imagen = new Image(ruta);
+                    }
+                    else {
+                        String ruta = "file:src/fiuba/algo3/vista/imagenes/" + guardable.getClass() + ".png";
+                        imagen = new Image(ruta);
+                    }
+                }
+                ImageView imageView = new ImageView(imagen);
+                imageView.setFitWidth(32);
+                imageView.setFitHeight(32);
+                grillaInventario.add(imageView, x, y);
+
+            }
+        }
+        VBox contenedorVertical = new VBox(grillaInventario);
+        contenedorVertical.setSpacing(10);
+        contenedorVertical.setPadding(new Insets(15));
+        return contenedorVertical;
     }
 }
