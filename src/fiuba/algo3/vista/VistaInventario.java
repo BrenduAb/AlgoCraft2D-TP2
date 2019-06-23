@@ -1,54 +1,84 @@
 package fiuba.algo3.vista;
 
-import fiuba.algo3.model.Contratos.IOcupable;
-import fiuba.algo3.model.Mapa.Celda;
-import fiuba.algo3.model.Mapa.Mapa;
-import fiuba.algo3.model.Mapa.Posicion;
+import fiuba.algo3.model.Contratos.IGuardable;
+import fiuba.algo3.model.Herramientas.Herramienta;
+import fiuba.algo3.model.Jugador.Inventario;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class VistaInventario extends Stage {
 
-    GridPane gridPane;
+    GridPane grillaInventario;
+    VBox contenedorMesaCrafteo;
+    BarraDeMenu menuBar;
 
-    private int ancho = 12;
-    private int alto = 8;
 
     public VistaInventario(Stage parent){
-        gridPane = new GridPane();
-        gridPane.setHgap(2);
-        gridPane.setVgap(2);
-        gridPane.setStyle("-fx-background-color: grey;");
         this.initOwner(parent);
         this.initModality(Modality.APPLICATION_MODAL);
-        Scene scene = new Scene(gridPane, 640, 480);
-        this.setScene(scene);
-
     }
-    public void mostrar(){
-        Mapa mapa = Mapa.getInstance();
+    public void mostrar(Inventario inventario){
+
+//        this.setMesaCrafteo();
+
+        this.setInventario(inventario);
+
+        this.showAndWait();
+    }
+
+    public void setInventario(Inventario inventario){
+        this.grillaInventario = new GridPane();
+        grillaInventario.setHgap(2);
+        grillaInventario.setVgap(2);
+        grillaInventario.setStyle("-fx-background-color: whitesmoke;");
+        grillaInventario.setAlignment(Pos.BOTTOM_CENTER);
+        Scene scene = new Scene(grillaInventario, 640, 480);
+        this.setScene(scene);
+        int alto = 3;
+        int ancho = 10;
+        int posicion = 0;
 
         for (int y = 0 ; y < alto ; y++) {
             for (int x = 0 ; x < ancho; x++) {
-                Celda ocupable = mapa.obtenerCelda(new Posicion(x,y));
-                IOcupable elemento = ocupable.obtenerElemento();
-                Image imagen = new Image("file:src/fiuba/algo3/vista/imagenes/pasto.png");
-                if (elemento != null){
-                    String ruta = "file:src/fiuba/algo3/vista/imagenes/" + elemento.getClass().getName() + ".png";
-                    imagen = new Image(ruta);
+                IGuardable guardable = null;
+                if (posicion < inventario.obtenerCantidadDeObjetos()){
+                    guardable = inventario.obtenerGuardable(posicion);
+                    posicion++;
+                }
+                Image imagen = new Image("file:src/fiuba/algo3/vista/imagenes/inventarioVacio.png");
+                if (guardable != null){
+                    if(guardable.getClass().getPackageName() == "fiuba.algo3.model.Herramientas"){
+                        Herramienta herramienta = (Herramienta)guardable;
+                        String ruta = "file:src/fiuba/algo3/vista/imagenes/" + guardable.getClass().getName() +
+                                herramienta.obtenerFuerza() + ".png";
+                        imagen = new Image(ruta);
+                    }
+                    else {
+                        String ruta = "file:src/fiuba/algo3/vista/imagenes/" + guardable.getClass() + ".png";
+                        imagen = new Image(ruta);
+                    }
                 }
                 ImageView imageView = new ImageView(imagen);
                 imageView.setFitWidth(32);
                 imageView.setFitHeight(32);
-                gridPane.add(imageView, x, y);
+                grillaInventario.add(imageView, x, y);
+
             }
         }
+        VBox contenedorVertical = new VBox(grillaInventario);
+        contenedorVertical.setSpacing(10);
+        contenedorVertical.setPadding(new Insets(15));
+    }
 
+    //Estuve queriendo agregar la mesa de crafteo en la misma ventana que en el inventario pero no me salio
+    public void setMesaCrafteo(){
 
-        this.showAndWait();
     }
 }

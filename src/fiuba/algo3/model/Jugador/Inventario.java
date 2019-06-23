@@ -16,4 +16,8 @@ public class Inventario {
     public void agregarAlInventario(IGuardable material){
         elementos.add(material);
     }
+
+    public IGuardable obtenerGuardable(int posicion){
+        return elementos.get(posicion);
+    }
 }

@@ -10,14 +10,13 @@ public class BotonInventarioHandler implements EventHandler<ActionEvent> {
     private final VistaInventario vista;
     private final Jugador Jugador;
 
-    public BotonInventarioHandler(VistaInventario vista,
-                                  fiuba.algo3.model.Jugador.Jugador Jugador) {
+    public BotonInventarioHandler(VistaInventario vista, Jugador Jugador) {
         this.vista = vista;
         this.Jugador = Jugador;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.vista.mostrar();
+        this.vista.mostrar(this.Jugador.obtenerInventario());
     }
 }
