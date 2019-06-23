@@ -3,7 +3,6 @@ package fiuba.algo3.model.Jugador;
 import fiuba.algo3.Excepciones.HerramientaRotaException;
 import fiuba.algo3.Excepciones.JugarSinHerramientaEquipadaException;
 import fiuba.algo3.Excepciones.MaterialRotoException;
-import fiuba.algo3.model.Contratos.IGuardable;
 import fiuba.algo3.model.Contratos.IOcupable;
 import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Herramientas.Herramienta;
@@ -19,11 +18,12 @@ public class Jugador implements IOcupable {
     Herramienta herramientaEquipada;
 
     public Jugador(Posicion posicionInicial, Mapa mapa) {
-        IGuardable hachaMadera = ConstructorHerramientas.construirHachaDeMadera();
+        Herramienta hachaMadera = ConstructorHerramientas.construirHachaDeMadera();
 
         this.mapa = mapa;
         this.inventario.agregarAlInventario(hachaMadera);
         this.mapa.ocuparTerreno(posicionInicial, this);
+        this.equipar(hachaMadera);
     }
 
     public int obtenerCantidadDeObjetosDelInventario() {
@@ -58,6 +58,10 @@ public class Jugador implements IOcupable {
     }
 
     public void equipar(Herramienta herramienta) {
+        if (this.herramientaEquipada != null) {
+            this.inventario.agregarAlInventario(this.herramientaEquipada);
+        }
+        this.inventario.removerGuardable(herramienta);
         this.herramientaEquipada = herramienta;
     }
 
@@ -80,7 +84,7 @@ public class Jugador implements IOcupable {
         }
     }
 
-    public Inventario obtenerInventario(){
+    public Inventario obtenerInventario() {
         return this.inventario;
     }
 }

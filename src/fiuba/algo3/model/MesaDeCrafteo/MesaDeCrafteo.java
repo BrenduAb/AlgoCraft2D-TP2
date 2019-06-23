@@ -5,28 +5,37 @@ import fiuba.algo3.model.Mapa.Posicion;
 import fiuba.algo3.model.Materiales.Material;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class MesaDeCrafteo {
 
-    Map<Posicion, Material> mesa = new HashMap<Posicion, Material>();
+    HashMap<Posicion, Material> mesa = new HashMap<Posicion, Material>();
     CrafteadorHerramientas crafteador;
 
     public MesaDeCrafteo(CrafteadorHerramientas crafter) {
 
         this.crafteador = crafter;
 
-        for (int i = 0; i < 3; i++){
-            for (int j = 0; j < 3; j++){
-                Posicion posicion = new Posicion(0 ,0);
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                Posicion posicion = new Posicion(0, 0);
                 mesa.put(posicion, null);
             }
         }
     }
 
-   public Herramienta crear(HashMap<Posicion, Material> crafteo) {
+    public void agregarMaterial(Posicion posicion, Material material) {
+        mesa.put(posicion, material);
+    }
 
-        crafteador.crear(crafteo);
-        return null;
-   }
+    public void removerMaterial(Posicion posicion) {
+        mesa.remove(posicion);
+    }
+
+    public Material obtenerMaterial(Posicion posicion) {
+        return this.mesa.get(posicion);
+    }
+
+    public Herramienta crear() {
+        return crafteador.crear(this.mesa);
+    }
 }

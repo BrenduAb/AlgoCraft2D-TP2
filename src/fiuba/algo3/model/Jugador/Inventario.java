@@ -9,15 +9,19 @@ public class Inventario {
 
     private List<IGuardable> elementos = new ArrayList<IGuardable>();
 
-    public int obtenerCantidadDeObjetos(){
-     return elementos.size();
+    public int obtenerCantidadDeObjetos() {
+        return elementos.size();
     }
 
-    public void agregarAlInventario(IGuardable material){
+    public void agregarAlInventario(IGuardable material) {
         elementos.add(material);
     }
 
-    public IGuardable obtenerGuardable(int posicion){
+    public IGuardable obtenerGuardable(int posicion) {
         return elementos.get(posicion);
+    }
+
+    public void removerGuardable(IGuardable material) {
+        elementos.remove(material);
     }
 }

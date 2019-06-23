@@ -1,13 +1,25 @@
 package fiuba.algo3.vista;
 
+import fiuba.algo3.controller.ClickHerramientaEventHandler;
+import fiuba.algo3.controller.ClickMaterialInventarioEventHandler;
+import fiuba.algo3.controller.ClickMaterialMesaEventHandler;
 import fiuba.algo3.model.Contratos.IGuardable;
+import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Herramientas.Herramienta;
 import fiuba.algo3.model.Jugador.Inventario;
+import fiuba.algo3.model.Jugador.Jugador;
+import fiuba.algo3.model.Mapa.Posicion;
+import fiuba.algo3.model.Materiales.Madera;
+import fiuba.algo3.model.Materiales.Material;
+import fiuba.algo3.model.MesaDeCrafteo.CrafteadorHerramientas;
+import fiuba.algo3.model.MesaDeCrafteo.MesaDeCrafteo;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -16,115 +28,181 @@ import javafx.stage.Stage;
 public class VistaInventario extends Stage {
 
     GridPane contenedorInventario;
+    GridPane contenedorCrafteo;
     VBox contenedorMesaCrafteo;
     BarraDeMenu menuBar;
+    Scene scene;
+    BorderPane borderPane;
+    Jugador jugador;
+    MesaDeCrafteo mesaDeCrafteo = new MesaDeCrafteo(new CrafteadorHerramientas());
+
+    BotoneraInventarioViewModel botonera = new BotoneraInventarioViewModel();
 
 
-    public VistaInventario(Stage parent){
+    public VistaInventario(Stage parent, Jugador jugador) {
         this.setTitle("Inventario");
         this.initOwner(parent);
         this.initModality(Modality.APPLICATION_MODAL);
-    }
-    public void mostrar(Inventario inventario){
+        this.contenedorInventario = new GridPane();
+        this.contenedorCrafteo = new GridPane();
+        this.jugador = jugador;
+        this.borderPane = new BorderPane();
 
-        this.armarContenedorInventario(inventario);
-        Scene scene = new Scene(this.contenedorInventario, 640, 480);
+
+        contenedorInventario.setHgap(2);
+        contenedorInventario.setVgap(2);
+        contenedorInventario.setStyle("-fx-background-color: grey;");
+
+        contenedorCrafteo.setHgap(2);
+        contenedorCrafteo.setVgap(2);
+        contenedorCrafteo.setStyle("-fx-background-color: grey;");
+
+        VBox contenedorMedio = new VBox(new Label("Inventario"), this.contenedorInventario,
+                new Label("Mesa Crafteo"),
+                this.contenedorCrafteo);
+        contenedorMedio.setSpacing(10);
+        borderPane.setCenter(contenedorMedio);
+        this.setBotonera(jugador);
+        scene = new Scene(borderPane, 640, 480);
+
+        //TODO SACAR ESTO
+        this.mesaDeCrafteo.agregarMaterial(new Posicion(1, 1), new Madera());
+    }
+
+    public void mostrar(Inventario inventario) {
+        this.actualizar(inventario);
         this.setScene(scene);
         this.showAndWait();
     }
 
-    public void armarContenedorInventario(Inventario inventario) {
-        this.contenedorInventario = new GridPane();
-        contenedorInventario.setHgap(3);
-        contenedorInventario.setVgap(3);
-        contenedorInventario.setStyle("-fx-background-color: black;");
-        this.contenedorInventario.add(this.dibujarMesaCrafteo(inventario), 0, 1);
-        this.contenedorInventario.add(this.dibujarInventario(inventario), 0, 2);
+    private void setBotonera(Jugador jugador) {
+
+        String path = "file:src/fiuba/algo3/vista/imagenes/inventarioVacio.png";
+        //TODO SACAR
+        jugador.obtenerInventario().agregarAlInventario(ConstructorHerramientas.construirPicoDePiedra());
+
+
+        Herramienta herramienta = jugador.obtenerHerramientaEquipada();
+        if (herramienta != null) {
+            path = "file:src/fiuba/algo3/vista/imagenes/" + herramienta.getClass().getName() +
+                    herramienta.obtenerFuerza() + ".png";
+        }
+
+
+        this.botonera.botonEquipar = new Button();
+        this.botonera.botonEquipar.setText("Equipar");
+        this.botonera.botonEquipar.setDisable(true);
+
+        this.botonera.botonDireccion = new Button();
+        this.botonera.botonDireccion.setText("Poner en");
+
+
+        this.botonera.imagenHerramientaEquipada = new ImageView();
+        Image imagen = new Image(path);
+
+        this.botonera.imagenHerramientaEquipada.setImage(imagen);
+        this.botonera.imagenHerramientaEquipada.setFitWidth(32);
+        this.botonera.imagenHerramientaEquipada.setFitHeight(32);
+
+        VBox contenedorVertical = new VBox(this.botonera.imagenHerramientaEquipada, this.botonera.botonEquipar, this.botonera.botonDireccion);
+        contenedorVertical.setSpacing(10);
+        contenedorVertical.setPadding(new Insets(15));
+        borderPane.setLeft(contenedorVertical);
+    }
+
+    public void actualizar(Inventario inventario) {
+
+        //this.contenedorInventario.add(this.dibujarMesaCrafteo(inventario), 0, 1);
+        this.dibujarInventario(inventario);
+        this.dibujarMesaCrafteo();
+        String path = "file:src/fiuba/algo3/vista/imagenes/inventarioVacio.png";
+
+        Herramienta herramienta = jugador.obtenerHerramientaEquipada();
+        if (herramienta != null) {
+            path = "file:src/fiuba/algo3/vista/imagenes/" + herramienta.getClass().getName() +
+                    herramienta.obtenerFuerza() + ".png";
+        }
+        Image imagen = new Image(path);
+
+        this.botonera.imagenHerramientaEquipada.setImage(imagen);
+        this.botonera.imagenHerramientaEquipada.setFitWidth(32);
+        this.botonera.imagenHerramientaEquipada.setFitHeight(32);
 
     }
 
-    public VBox dibujarInventario(Inventario inventario){
-        GridPane grillaInventario = new GridPane();
-        grillaInventario.setHgap(1);
-        grillaInventario.setVgap(1);
-        grillaInventario.setAlignment(Pos.BOTTOM_CENTER);
+    public void dibujarInventario(Inventario inventario) {
         int alto = 3;
         int ancho = 10;
         int posicion = 0;
 
-        for (int y = 0 ; y < alto ; y++) {
-            for (int x = 0 ; x < ancho; x++) {
+        for (int y = 0; y < alto; y++) {
+            for (int x = 0; x < ancho; x++) {
                 IGuardable guardable = null;
-                if (posicion < inventario.obtenerCantidadDeObjetos()){
+                ImageView imageView = new ImageView();
+                if (posicion < inventario.obtenerCantidadDeObjetos()) {
                     guardable = inventario.obtenerGuardable(posicion);
                     posicion++;
                 }
                 Image imagen = new Image("file:src/fiuba/algo3/vista/imagenes/inventarioVacio.png");
-                if (guardable != null){
-                    if(guardable.getClass().getPackage().getName() == "fiuba.algo3.model.Herramientas"){
-                        Herramienta herramienta = (Herramienta)guardable;
+                if (guardable != null) {
+                    if (guardable instanceof Herramienta) {
+                        Herramienta herramienta = (Herramienta) guardable;
                         String ruta = "file:src/fiuba/algo3/vista/imagenes/" + guardable.getClass().getName() +
                                 herramienta.obtenerFuerza() + ".png";
+                        ClickHerramientaEventHandler handler = new ClickHerramientaEventHandler(jugador,
+                                botonera,
+                                herramienta,
+                                this);
+                        imageView.setOnMouseClicked(handler);
                         imagen = new Image(ruta);
-                    }
-                    else {
-                        String ruta = "file:src/fiuba/algo3/vista/imagenes/" + guardable.getClass() + ".png";
+                    } else {
+                        String ruta = "file:src/fiuba/algo3/vista/imagenes/" + guardable.getClass().getName() + ".png";
+                        ClickMaterialInventarioEventHandler handler = new ClickMaterialInventarioEventHandler(inventario, guardable, this);
+                        imageView.setOnMouseClicked(handler);
                         imagen = new Image(ruta);
                     }
                 }
-                ImageView imageView = new ImageView(imagen);
+
+                imageView.setImage(imagen);
                 imageView.setFitWidth(32);
                 imageView.setFitHeight(32);
-                grillaInventario.add(imageView, x, y);
+
+                contenedorInventario.add(imageView, x, y);
 
             }
         }
-        VBox contenedorVertical = new VBox(grillaInventario);
-        contenedorVertical.setSpacing(10);
-        contenedorVertical.setPadding(new Insets(15));
-        return contenedorVertical;
     }
 
     //Estuve queriendo agregar la mesa de crafteo en la misma ventana que en el inventario pero no me salio
-    public VBox dibujarMesaCrafteo(Inventario inventario){
-        GridPane grillaInventario = new GridPane();
-        grillaInventario.setHgap(1);
-        grillaInventario.setVgap(1);
-        grillaInventario.setAlignment(Pos.BOTTOM_CENTER);
-        int alto = 3;
-        int ancho = 10;
-        int posicion = 0;
+    public void dibujarMesaCrafteo() {
 
-        for (int y = 0 ; y < alto ; y++) {
-            for (int x = 0 ; x < ancho; x++) {
-                IGuardable guardable = null;
-                if (posicion < inventario.obtenerCantidadDeObjetos()){
-                    guardable = inventario.obtenerGuardable(posicion);
-                    posicion++;
+        int alto = 3;
+        int ancho = 3;
+
+        for (int y = 0; y < alto; y++) {
+            for (int x = 0; x < ancho; x++) {
+                Posicion posicion = new Posicion(x, y);
+                Material material = this.mesaDeCrafteo.obtenerMaterial(posicion);
+                String ruta = "file:src/fiuba/algo3/vista/imagenes/inventarioVacio.png";
+                ImageView imageView = new ImageView();
+
+                if (material != null) {
+                    ruta = "file:src/fiuba/algo3/vista/imagenes/" + material.getClass().getName() + ".png";
+                    ClickMaterialMesaEventHandler handler;
+                    handler = new ClickMaterialMesaEventHandler(this.jugador.obtenerInventario(),
+                            material,
+                            mesaDeCrafteo,
+                            this,
+                            posicion);
+                    imageView.setOnMouseClicked(handler);
                 }
-                Image imagen = new Image("file:src/fiuba/algo3/vista/imagenes/inventarioVacio.png");
-                if (guardable != null){
-                    if(guardable.getClass().getPackage().getName() == "fiuba.algo3.model.Herramientas"){
-                        Herramienta herramienta = (Herramienta)guardable;
-                        String ruta = "file:src/fiuba/algo3/vista/imagenes/" + guardable.getClass().getName() +
-                                herramienta.obtenerFuerza() + ".png";
-                        imagen = new Image(ruta);
-                    }
-                    else {
-                        String ruta = "file:src/fiuba/algo3/vista/imagenes/" + guardable.getClass() + ".png";
-                        imagen = new Image(ruta);
-                    }
-                }
-                ImageView imageView = new ImageView(imagen);
+                Image imagen = new Image(ruta);
+                imageView.setImage(imagen);
                 imageView.setFitWidth(32);
                 imageView.setFitHeight(32);
-                grillaInventario.add(imageView, x, y);
+                contenedorCrafteo.add(imageView, x, y);
 
             }
         }
-        VBox contenedorVertical = new VBox(grillaInventario);
-        contenedorVertical.setSpacing(10);
-        contenedorVertical.setPadding(new Insets(15));
-        return contenedorVertical;
     }
 }
