@@ -16,11 +16,11 @@ public class TestMesaCrafteo {
     public void creoUnHachaDeMaderaEnLaMesaDeCrafteo(){
         HashMap<Posicion, Material> crafteo = new HashMap<Posicion, Material>();
         CrafteadorHerramientas crafteador = new CrafteadorHerramientas();
-        crafteo.put(new Posicion(0, 0), new Madera());
-        crafteo.put(new Posicion(0, 1), new Madera());
-        crafteo.put(new Posicion(1, 0), new Madera());
-        crafteo.put(new Posicion(1, 1), new Madera());
-        crafteo.put(new Posicion(2, 1), new Madera());
+        crafteo.put(new Posicion(0,0), new Madera());
+        crafteo.put(new Posicion(0,1), new Madera());
+        crafteo.put(new Posicion(1,0), new Madera());
+        crafteo.put(new Posicion(1,1), new Madera());
+        crafteo.put(new Posicion(1,2), new Madera());
         Herramienta hacha = crafteador.crear(crafteo);
 
         Assert.assertEquals(true,hacha != null);

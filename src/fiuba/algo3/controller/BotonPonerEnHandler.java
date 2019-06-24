@@ -14,21 +14,22 @@ public class BotonPonerEnHandler implements EventHandler<ActionEvent> {
     Material material;
     Inventario inventario;
     VistaInventario vistaInventario;
-    Posicion posicion;
     MesaDeCrafteo mesa;
 
     public BotonPonerEnHandler(Inventario inventario, BotoneraInventarioViewModel botonera, Material material,
-                               VistaInventario vistaInventario, Posicion posicion, MesaDeCrafteo mesa) {
+                               VistaInventario vistaInventario,  MesaDeCrafteo mesa) {
         this.botonera = botonera;
         this.inventario = inventario;
         this.material = material;
         this.vistaInventario = vistaInventario;
-        this.posicion = posicion;
         this.mesa = mesa;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
+        int posicionX = (int) botonera.columnaPonerMesa.getValue();
+        int posicionY = (int) botonera.filaPonerMesa.getValue();
+        Posicion posicion = new Posicion(posicionX - 1, posicionY - 1);
         this.inventario.removerGuardable(material);
         this.mesa.agregarMaterial(posicion, material);
         this.botonera.botonPonerEn.setDisable(true);

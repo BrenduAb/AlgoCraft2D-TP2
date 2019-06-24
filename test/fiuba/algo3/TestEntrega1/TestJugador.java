@@ -18,7 +18,7 @@ import org.junit.Test;
 public class TestJugador {
 
     @Test
-    public void JugadorSeCreaConUnSoloObjetoEnSuInventario() {
+    public void JugadorSeCreaSinObjetoEnSuInventario() {
         CleanSingleton.cleanMapa();
 
         Mapa mapa = Mapa.getInstance();
@@ -27,7 +27,7 @@ public class TestJugador {
 
         int objetosDelInventario = jugador.obtenerCantidadDeObjetosDelInventario();
 
-        Assert.assertEquals(1, objetosDelInventario);
+        Assert.assertEquals(0, objetosDelInventario);
     }
 
     @Test
