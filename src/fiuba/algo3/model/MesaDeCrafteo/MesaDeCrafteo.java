@@ -38,4 +38,13 @@ public class MesaDeCrafteo {
     public Herramienta crear() {
         return crafteador.crear(this.mesa);
     }
+
+    public void limpiar() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                Posicion posicion = new Posicion(i, j);
+                mesa.replace(posicion, null);
+            }
+        }
+    }
 }

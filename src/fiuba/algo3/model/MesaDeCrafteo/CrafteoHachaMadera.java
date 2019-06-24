@@ -13,7 +13,7 @@ public class CrafteoHachaMadera extends CrafteoHerramientas{
         crafteo.put(new Posicion(0,1), new Madera());
         crafteo.put(new Posicion(1,0), new Madera());
         crafteo.put(new Posicion(1,1), new Madera());
-        crafteo.put(new Posicion(2,1), new Madera());
+        crafteo.put(new Posicion(1,2), new Madera());
     }
 
 

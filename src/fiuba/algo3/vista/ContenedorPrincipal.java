@@ -1,7 +1,6 @@
 package fiuba.algo3.vista;
 
 import fiuba.algo3.model.Jugador.Jugador;
-import fiuba.algo3.controller.BotonDireccionHandler;
 import fiuba.algo3.controller.BotonInventarioHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -40,18 +39,13 @@ public class ContenedorPrincipal extends BorderPane {
 
     private void setBotonera(Jugador Jugador) {
 
-        Button botonMover = new Button();
-        botonMover.setText("Mostrar inventario");
+        Button botonMostrarInventario = new Button();
+        botonMostrarInventario.setText("Mostrar inventario");
         this.vistaInventario = new VistaInventario(stage,Jugador);
         BotonInventarioHandler moveButtonHandler = new BotonInventarioHandler(vistaInventario, Jugador);
-        botonMover.setOnAction(moveButtonHandler);
+        botonMostrarInventario.setOnAction(moveButtonHandler);
 
-        Button botonDireccion = new Button();
-        botonDireccion.setText("Cambiar direccion");
-        BotonDireccionHandler directionButtonHandler = new BotonDireccionHandler(Jugador);
-        botonDireccion.setOnAction(directionButtonHandler);
-
-        VBox contenedorVertical = new VBox(botonMover, botonDireccion);
+        VBox contenedorVertical = new VBox(botonMostrarInventario);
         contenedorVertical.setSpacing(10);
         contenedorVertical.setPadding(new Insets(15));
 

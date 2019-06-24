@@ -1,21 +1,19 @@
 package fiuba.algo3.vista;
 
-import fiuba.algo3.controller.ClickHerramientaEventHandler;
-import fiuba.algo3.controller.ClickMaterialInventarioEventHandler;
-import fiuba.algo3.controller.ClickMaterialMesaEventHandler;
+import fiuba.algo3.controller.*;
 import fiuba.algo3.model.Contratos.IGuardable;
-import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Herramientas.Herramienta;
 import fiuba.algo3.model.Jugador.Inventario;
 import fiuba.algo3.model.Jugador.Jugador;
 import fiuba.algo3.model.Mapa.Posicion;
-import fiuba.algo3.model.Materiales.Madera;
 import fiuba.algo3.model.Materiales.Material;
 import fiuba.algo3.model.MesaDeCrafteo.CrafteadorHerramientas;
 import fiuba.algo3.model.MesaDeCrafteo.MesaDeCrafteo;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,8 +27,6 @@ public class VistaInventario extends Stage {
 
     GridPane contenedorInventario;
     GridPane contenedorCrafteo;
-    VBox contenedorMesaCrafteo;
-    BarraDeMenu menuBar;
     Scene scene;
     BorderPane borderPane;
     Jugador jugador;
@@ -51,11 +47,9 @@ public class VistaInventario extends Stage {
 
         contenedorInventario.setHgap(2);
         contenedorInventario.setVgap(2);
-        contenedorInventario.setStyle("-fx-background-color: grey;");
 
         contenedorCrafteo.setHgap(2);
         contenedorCrafteo.setVgap(2);
-        contenedorCrafteo.setStyle("-fx-background-color: grey;");
 
         VBox contenedorMedio = new VBox(new Label("Inventario"), this.contenedorInventario,
                 new Label("Mesa Crafteo"),
@@ -65,8 +59,6 @@ public class VistaInventario extends Stage {
         this.setBotonera(jugador);
         scene = new Scene(borderPane, 640, 480);
 
-        //TODO SACAR ESTO
-        this.mesaDeCrafteo.agregarMaterial(new Posicion(1, 1), new Madera());
     }
 
     public void mostrar(Inventario inventario) {
@@ -78,9 +70,6 @@ public class VistaInventario extends Stage {
     private void setBotonera(Jugador jugador) {
 
         String path = "file:src/fiuba/algo3/vista/imagenes/inventarioVacio.png";
-        //TODO SACAR
-        jugador.obtenerInventario().agregarAlInventario(ConstructorHerramientas.construirPicoDePiedra());
-
 
         Herramienta herramienta = jugador.obtenerHerramientaEquipada();
         if (herramienta != null) {
@@ -93,8 +82,13 @@ public class VistaInventario extends Stage {
         this.botonera.botonEquipar.setText("Equipar");
         this.botonera.botonEquipar.setDisable(true);
 
-        this.botonera.botonDireccion = new Button();
-        this.botonera.botonDireccion.setText("Poner en");
+        this.botonera.botonPonerEn = new Button();
+        this.botonera.botonPonerEn.setText("Poner en la mesa:");
+        this.botonera.botonPonerEn.setDisable(true);
+
+        this.botonera.construirCrafteo = new Button();
+        this.botonera.construirCrafteo.setText("Construir Herramienta");
+        this.botonera.construirCrafteo.setOnAction(new ConstruirHerramientaEventHandler(this, this.mesaDeCrafteo, this.jugador));
 
 
         this.botonera.imagenHerramientaEquipada = new ImageView();
@@ -104,7 +98,25 @@ public class VistaInventario extends Stage {
         this.botonera.imagenHerramientaEquipada.setFitWidth(32);
         this.botonera.imagenHerramientaEquipada.setFitHeight(32);
 
-        VBox contenedorVertical = new VBox(this.botonera.imagenHerramientaEquipada, this.botonera.botonEquipar, this.botonera.botonDireccion);
+
+        botonera.filaPonerMesa = new ChoiceBox();
+        botonera.filaPonerMesa.setItems(FXCollections.observableArrayList(1, 2, 3));
+        botonera.columnaPonerMesa = new ChoiceBox();
+        botonera.columnaPonerMesa.setItems(FXCollections.observableArrayList(1, 2, 3));
+
+        botonera.filaPonerMesa.setValue(1);
+        botonera.columnaPonerMesa.setValue(1);
+
+        botonera.mensajeError = new Label("");
+        botonera.mensajeError.setStyle("-fx-color: red");
+
+        VBox contenedorVertical = new VBox(new Label("Herramienta Equipada"), this.botonera.imagenHerramientaEquipada,
+                this.botonera.botonEquipar, this.botonera.botonPonerEn,
+                new Label("Fila: "), botonera.filaPonerMesa,
+                new Label("Columna: "), botonera.columnaPonerMesa,
+                botonera.construirCrafteo,
+                botonera.mensajeError);
+
         contenedorVertical.setSpacing(10);
         contenedorVertical.setPadding(new Insets(15));
         borderPane.setLeft(contenedorVertical);
@@ -133,15 +145,15 @@ public class VistaInventario extends Stage {
     public void dibujarInventario(Inventario inventario) {
         int alto = 3;
         int ancho = 10;
-        int posicion = 0;
+        int index = 0;
 
         for (int y = 0; y < alto; y++) {
             for (int x = 0; x < ancho; x++) {
                 IGuardable guardable = null;
                 ImageView imageView = new ImageView();
-                if (posicion < inventario.obtenerCantidadDeObjetos()) {
-                    guardable = inventario.obtenerGuardable(posicion);
-                    posicion++;
+                if (index < inventario.obtenerCantidadDeObjetos()) {
+                    guardable = inventario.obtenerGuardable(index);
+                    index++;
                 }
                 Image imagen = new Image("file:src/fiuba/algo3/vista/imagenes/inventarioVacio.png");
                 if (guardable != null) {
@@ -156,8 +168,12 @@ public class VistaInventario extends Stage {
                         imageView.setOnMouseClicked(handler);
                         imagen = new Image(ruta);
                     } else {
-                        String ruta = "file:src/fiuba/algo3/vista/imagenes/" + guardable.getClass().getName() + ".png";
-                        ClickMaterialInventarioEventHandler handler = new ClickMaterialInventarioEventHandler(inventario, guardable, this);
+                        Material material = (Material) guardable;
+                        String ruta = "file:src/fiuba/algo3/vista/imagenes/" + material.getClass().getName() + ".png";
+                        ClickMaterialInventarioEventHandler handler = new ClickMaterialInventarioEventHandler(inventario,
+                                material,
+                                mesaDeCrafteo,
+                                this, botonera, borderPane);
                         imageView.setOnMouseClicked(handler);
                         imagen = new Image(ruta);
                     }
@@ -195,6 +211,13 @@ public class VistaInventario extends Stage {
                             this,
                             posicion);
                     imageView.setOnMouseClicked(handler);
+                }else{
+                    ClickNadaMesaSetPosicionEventHandler handler;
+                    handler = new ClickNadaMesaSetPosicionEventHandler(
+                            botonera,
+                            this,
+                            posicion);
+                    imageView.setOnMouseClicked(handler);
                 }
                 Image imagen = new Image(ruta);
                 imageView.setImage(imagen);
@@ -204,5 +227,13 @@ public class VistaInventario extends Stage {
 
             }
         }
+    }
+
+    public void ponerMensajeError(String s) {
+        botonera.mensajeError.setText(s);
+    }
+
+    public void limpiarMensajeError() {
+        botonera.mensajeError.setText("");
     }
 }

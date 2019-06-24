@@ -4,15 +4,16 @@ public class Posicion {
     private int x;
     private int y;
 
-    public Posicion(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Posicion(int columna, int fila) {
+        this.x = columna;
+        this.y = fila;
     }
 
-    public int x(){
+    public int x() {
         return x;
     }
-    public int y(){
+
+    public int y() {
         return y;
     }
 
@@ -27,43 +28,43 @@ public class Posicion {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == this){
-            return  true;
+        if (obj == this) {
+            return true;
         }
 
-        if(obj == null){
-            return  false;
+        if (obj == null) {
+            return false;
         }
 
-        if (obj.getClass() != Posicion.class){
+        if (obj.getClass() != Posicion.class) {
             return false;
         }
 
         Posicion instance = (Posicion) obj;
 
-        if (this.x != instance.x() && this.y != instance.y){
-            return  false;
+        if (this.x != instance.x() && this.y != instance.y) {
+            return false;
         }
 
-        return  true;
+        return true;
     }
 
-    public Posicion posicionSiguienteDerecha(){
+    public Posicion posicionSiguienteDerecha() {
         int nuevaX = this.x + 1;
         return new Posicion(nuevaX, this.y);
     }
 
-    public Posicion posicionSiguienteIzquierda(){
+    public Posicion posicionSiguienteIzquierda() {
         int nuevaX = this.x - 1;
         return new Posicion(nuevaX, this.y);
     }
 
-    public Posicion posicionSiguienteAbajo(){
+    public Posicion posicionSiguienteAbajo() {
         int nuevaY = this.y + 1;
         return new Posicion(this.x, nuevaY);
     }
 
-    public Posicion posicionSiguienteArriba(){
+    public Posicion posicionSiguienteArriba() {
         int nuevaY = this.y - 1;
         return new Posicion(this.x, nuevaY);
     }
