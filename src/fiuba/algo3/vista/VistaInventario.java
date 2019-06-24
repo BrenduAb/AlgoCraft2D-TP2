@@ -29,8 +29,6 @@ public class VistaInventario extends Stage {
 
     GridPane contenedorInventario;
     GridPane contenedorCrafteo;
-    VBox contenedorMesaCrafteo;
-    BarraDeMenu menuBar;
     Scene scene;
     BorderPane borderPane;
     Jugador jugador;
@@ -51,11 +49,9 @@ public class VistaInventario extends Stage {
 
         contenedorInventario.setHgap(2);
         contenedorInventario.setVgap(2);
-        contenedorInventario.setStyle("-fx-background-color: grey;");
 
         contenedorCrafteo.setHgap(2);
         contenedorCrafteo.setVgap(2);
-        contenedorCrafteo.setStyle("-fx-background-color: grey;");
 
         VBox contenedorMedio = new VBox(new Label("Inventario"), this.contenedorInventario,
                 new Label("Mesa Crafteo"),
@@ -93,8 +89,9 @@ public class VistaInventario extends Stage {
         this.botonera.botonEquipar.setText("Equipar");
         this.botonera.botonEquipar.setDisable(true);
 
-        this.botonera.botonDireccion = new Button();
-        this.botonera.botonDireccion.setText("Poner en");
+        this.botonera.botonPonerEn = new Button();
+        this.botonera.botonPonerEn.setText("Poner en");
+        this.botonera.botonPonerEn.setDisable(true);
 
 
         this.botonera.imagenHerramientaEquipada = new ImageView();
@@ -104,7 +101,8 @@ public class VistaInventario extends Stage {
         this.botonera.imagenHerramientaEquipada.setFitWidth(32);
         this.botonera.imagenHerramientaEquipada.setFitHeight(32);
 
-        VBox contenedorVertical = new VBox(this.botonera.imagenHerramientaEquipada, this.botonera.botonEquipar, this.botonera.botonDireccion);
+        VBox contenedorVertical = new VBox(new Label("Herramienta Equipada"),this.botonera.imagenHerramientaEquipada,
+                this.botonera.botonEquipar, this.botonera.botonPonerEn);
         contenedorVertical.setSpacing(10);
         contenedorVertical.setPadding(new Insets(15));
         borderPane.setLeft(contenedorVertical);
@@ -133,15 +131,15 @@ public class VistaInventario extends Stage {
     public void dibujarInventario(Inventario inventario) {
         int alto = 3;
         int ancho = 10;
-        int posicion = 0;
+        int index = 0;
 
         for (int y = 0; y < alto; y++) {
             for (int x = 0; x < ancho; x++) {
                 IGuardable guardable = null;
                 ImageView imageView = new ImageView();
-                if (posicion < inventario.obtenerCantidadDeObjetos()) {
-                    guardable = inventario.obtenerGuardable(posicion);
-                    posicion++;
+                if (index < inventario.obtenerCantidadDeObjetos()) {
+                    guardable = inventario.obtenerGuardable(index);
+                    index++;
                 }
                 Image imagen = new Image("file:src/fiuba/algo3/vista/imagenes/inventarioVacio.png");
                 if (guardable != null) {
@@ -156,8 +154,12 @@ public class VistaInventario extends Stage {
                         imageView.setOnMouseClicked(handler);
                         imagen = new Image(ruta);
                     } else {
-                        String ruta = "file:src/fiuba/algo3/vista/imagenes/" + guardable.getClass().getName() + ".png";
-                        ClickMaterialInventarioEventHandler handler = new ClickMaterialInventarioEventHandler(inventario, guardable, this);
+                        Material material = (Material) guardable;
+                        String ruta = "file:src/fiuba/algo3/vista/imagenes/" + material.getClass().getName() + ".png";
+                        ClickMaterialInventarioEventHandler handler = new ClickMaterialInventarioEventHandler(inventario,
+                                 material,
+                                 mesaDeCrafteo,
+                                this, botonera, borderPane);
                         imageView.setOnMouseClicked(handler);
                         imagen = new Image(ruta);
                     }
