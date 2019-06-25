@@ -228,10 +228,10 @@ public class TestHacha {
     @Test(expected = HerramientaRotaException.class)
     public void hachaDeMetalSeUsaContraCualquierMaterial80VecesYSeRompe() {
         Hacha hachaMetal = ConstructorHerramientas.construirHachaDeMetal();
-        Material madera = new Diamante();
+        Material diamante = new Diamante();
 
         for (int i = 1; i <= 80; i++) {
-            hachaMetal.usarContra(madera);
+            hachaMetal.usarContra(diamante);
         }
 
         Assert.assertEquals(0, hachaMetal.obtenerDurabilidad(),0);

@@ -4,6 +4,7 @@ import fiuba.algo3.Excepciones.*;
 import fiuba.algo3.model.Contratos.IGuardable;
 import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Herramientas.Herramienta;
+import fiuba.algo3.model.Jugador.Inventario;
 import fiuba.algo3.model.Jugador.Jugador;
 import fiuba.algo3.model.Mapa.Celda;
 import fiuba.algo3.model.Mapa.Mapa;
@@ -221,5 +222,30 @@ public class TestJugador {
 
             }
         }
+    }
+
+    @Test
+    public void SeObtieneElInventarioDelJugador() {
+        CleanSingleton.cleanMapa();
+
+
+        Mapa mapa = Mapa.getInstance();
+        Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
+        IGuardable hacha = ConstructorHerramientas.construirHachaDeMadera();
+
+        Inventario inventario = jugador.obtenerInventario();
+        Assert.assertEquals(true, inventario != null);
+    }
+
+    @Test
+    public void SeObtieneGuardableDelInventario() {
+        CleanSingleton.cleanMapa();
+
+        Inventario inventario = new Inventario();
+        IGuardable hacha = ConstructorHerramientas.construirHachaDeMadera();
+        inventario.agregarAlInventario(hacha);
+
+        IGuardable guardable = inventario.obtenerGuardable(0);
+        Assert.assertEquals(hacha, guardable);
     }
 }
