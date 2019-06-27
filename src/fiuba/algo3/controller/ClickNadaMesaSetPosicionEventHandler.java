@@ -11,12 +11,11 @@ public class ClickNadaMesaSetPosicionEventHandler implements EventHandler<MouseE
     VistaInventario vistaInventario;
     Posicion posicion;
 
-    public ClickNadaMesaSetPosicionEventHandler(BotoneraInventarioViewModel botonera,
-                                                VistaInventario vistaInventario,
-                                                Posicion posicion) {
+    public ClickNadaMesaSetPosicionEventHandler(BotoneraInventarioViewModel botonera, Posicion posicion,
+                                                VistaInventario vista) {
         this.botonera = botonera;
         this.posicion = posicion;
-        this.vistaInventario = vistaInventario;
+        this.vistaInventario = vista;
     }
 
     @Override

@@ -7,27 +7,25 @@ import fiuba.algo3.vista.VistaInventario;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class EquiparBotonEventHandler implements EventHandler<ActionEvent> {
+public class BotonEquiparEventHandler implements EventHandler<ActionEvent> {
 
     BotoneraInventarioViewModel botonera;
     Herramienta herramienta;
     Jugador jugador;
     VistaInventario vistaInventario;
 
-    public EquiparBotonEventHandler(Jugador jugador,
-                                    BotoneraInventarioViewModel botonera,
-                                    Herramienta herramienta,
-                                    VistaInventario vistaInventario) {
+    public BotonEquiparEventHandler(BotoneraInventarioViewModel botonera, Herramienta herramienta,
+                                    VistaInventario vista) {
         this.botonera = botonera;
-        this.jugador = jugador;
+        this.jugador = vista.obtenerJuego().obtenerJugador();
         this.herramienta = herramienta;
-        this.vistaInventario = vistaInventario;
+        this.vistaInventario = vista;
     }
 
     @Override
     public void handle(ActionEvent event) {
         this.jugador.equipar(herramienta);
         this.botonera.botonEquipar.setDisable(true);
-        this.vistaInventario.actualizar(this.jugador.obtenerInventario());
+        this.vistaInventario.actualizar();
     }
 }

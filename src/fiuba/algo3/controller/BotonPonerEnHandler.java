@@ -16,13 +16,13 @@ public class BotonPonerEnHandler implements EventHandler<ActionEvent> {
     VistaInventario vistaInventario;
     MesaDeCrafteo mesa;
 
-    public BotonPonerEnHandler(Inventario inventario, BotoneraInventarioViewModel botonera, Material material,
-                               VistaInventario vistaInventario,  MesaDeCrafteo mesa) {
+    public BotonPonerEnHandler(BotoneraInventarioViewModel botonera, Material material,
+                               VistaInventario vista) {
         this.botonera = botonera;
-        this.inventario = inventario;
+        this.inventario = vista.obtenerJuego().obtenerJugador().obtenerInventario();
         this.material = material;
-        this.vistaInventario = vistaInventario;
-        this.mesa = mesa;
+        this.vistaInventario = vista;
+        this.mesa = vista.obtenerJuego().obtenerMesaDeCrafteo();
     }
 
     @Override
@@ -33,6 +33,6 @@ public class BotonPonerEnHandler implements EventHandler<ActionEvent> {
         this.inventario.removerGuardable(material);
         this.mesa.agregarMaterial(posicion, material);
         this.botonera.botonPonerEn.setDisable(true);
-        this.vistaInventario.actualizar(this.inventario);
+        this.vistaInventario.actualizar();
     }
 }
