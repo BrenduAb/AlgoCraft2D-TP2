@@ -7,6 +7,8 @@ import fiuba.algo3.model.Materiales.Diamante;
 import fiuba.algo3.model.Materiales.Madera;
 import fiuba.algo3.model.Materiales.Metal;
 import fiuba.algo3.model.Materiales.Piedra;
+import fiuba.algo3.model.MesaDeCrafteo.CrafteadorHerramientas;
+import fiuba.algo3.model.MesaDeCrafteo.MesaDeCrafteo;
 
 public class
 
@@ -17,6 +19,7 @@ Juego {
 
 
     private Jugador jugador;
+    private MesaDeCrafteo mesa;
 
     public Juego() {
         Mapa mapa = Mapa.getInstance();
@@ -28,6 +31,8 @@ Juego {
         this.inicializarTerreno(mapa);
 
         this.jugador = jugador;
+
+        this.mesa = new MesaDeCrafteo(new CrafteadorHerramientas());
     }
 
     private void inicializarTerreno(Mapa mapa) {
@@ -66,6 +71,10 @@ Juego {
 
     public Jugador obtenerJugador() {
         return this.jugador;
+    }
+
+    public MesaDeCrafteo obtenerMesaDeCrafteo() {
+        return this.mesa;
     }
 
 

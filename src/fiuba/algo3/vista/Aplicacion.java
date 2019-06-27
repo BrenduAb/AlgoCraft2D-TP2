@@ -17,7 +17,7 @@ public class Aplicacion extends Application {
 
         stage.setTitle("TP2 ALGOCRAFT");
         Juego juego = new Juego();
-        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage, juego.obtenerJugador());
+        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage, juego);
         Scene escenaJuego = new Scene(contenedorPrincipal, 640, 480);
 
 

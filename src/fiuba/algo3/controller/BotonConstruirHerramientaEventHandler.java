@@ -7,18 +7,16 @@ import fiuba.algo3.vista.VistaInventario;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class ConstruirHerramientaEventHandler implements EventHandler<ActionEvent> {
+public class BotonConstruirHerramientaEventHandler implements EventHandler<ActionEvent> {
 
     VistaInventario vistaInventario;
     MesaDeCrafteo mesaDeCrafteo;
     Jugador jugador;
 
-    public ConstruirHerramientaEventHandler(VistaInventario vistaInventario,
-                                            MesaDeCrafteo mesaDeCrafteo,
-                                            Jugador jugador) {
-        this.jugador = jugador;
-        this.mesaDeCrafteo = mesaDeCrafteo;
-        this.vistaInventario = vistaInventario;
+    public BotonConstruirHerramientaEventHandler(VistaInventario vista) {
+        this.jugador = vista.obtenerJuego().obtenerJugador();
+        this.mesaDeCrafteo = vista.obtenerJuego().obtenerMesaDeCrafteo();
+        this.vistaInventario = vista;
     }
 
     @Override
@@ -29,7 +27,7 @@ public class ConstruirHerramientaEventHandler implements EventHandler<ActionEven
         } else {
             jugador.obtenerInventario().agregarAlInventario(herramienta);
             mesaDeCrafteo.limpiar();
-            this.vistaInventario.actualizar(this.jugador.obtenerInventario());
+            this.vistaInventario.actualizar();
         }
     }
 }
