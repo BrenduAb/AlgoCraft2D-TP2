@@ -55,4 +55,11 @@ public class TestMapa {
 
         Assert.assertEquals(null, mapa.obtenerCelda(new Posicion(1, 1)).obtenerElemento());
     }
+
+    @Test
+    public void posicionSeSeteaCorrectamente() {
+        Posicion posicion = new Posicion(1,1);
+
+        Assert.assertEquals(posicion.y(),1);
+    }
 }

@@ -146,6 +146,9 @@ public class TestPicoFino {
         for(int i = 1; i < 500000000; i++) {
             picoFino.usarContra(madera);
         }
+
+
+        // FALTA PROBAR EL DESGASTE MINIMO
     }*/
 
 }

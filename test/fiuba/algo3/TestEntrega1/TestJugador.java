@@ -4,6 +4,7 @@ import fiuba.algo3.Excepciones.*;
 import fiuba.algo3.model.Contratos.IGuardable;
 import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
 import fiuba.algo3.model.Herramientas.Herramienta;
+import fiuba.algo3.model.Jugador.Inventario;
 import fiuba.algo3.model.Jugador.Jugador;
 import fiuba.algo3.model.Mapa.Celda;
 import fiuba.algo3.model.Mapa.Mapa;
@@ -79,9 +80,35 @@ public class TestJugador {
 
         Mapa mapa = Mapa.getInstance();
 
-        Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
+        Jugador jugador = new Jugador(new Posicion(2, 1), mapa);
 
-        jugador.moverHaciaLaDerecha();
+        jugador.moverHaciaLaIzquierda();
+
+        Assert.assertEquals(new Posicion(1, 1), jugador.obtenerPosicionActual());
+    }
+
+    @Test
+    public void PosicionoAlJugadorEnUnMapaYLoMuevoHaciaAbajo() {
+        CleanSingleton.cleanMapa();
+
+        Mapa mapa = Mapa.getInstance();
+
+        Jugador jugador = new Jugador(new Posicion(2, 2), mapa);
+
+        jugador.moverHaciAbajo();
+
+        Assert.assertEquals(new Posicion(2, 3), jugador.obtenerPosicionActual());
+    }
+
+    @Test
+    public void PosicionoAlJugadorEnUnMapaYLoMuevoHaciaArriba() {
+        CleanSingleton.cleanMapa();
+
+        Mapa mapa = Mapa.getInstance();
+
+        Jugador jugador = new Jugador(new Posicion(2, 2), mapa);
+
+        jugador.moverHaciArriba();
 
         Assert.assertEquals(new Posicion(2, 1), jugador.obtenerPosicionActual());
     }
@@ -221,5 +248,30 @@ public class TestJugador {
 
             }
         }
+    }
+
+    @Test
+    public void SeObtieneElInventarioDelJugador() {
+        CleanSingleton.cleanMapa();
+
+
+        Mapa mapa = Mapa.getInstance();
+        Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
+        IGuardable hacha = ConstructorHerramientas.construirHachaDeMadera();
+
+        Inventario inventario = jugador.obtenerInventario();
+        Assert.assertEquals(true, inventario != null);
+    }
+
+    @Test
+    public void SeObtieneGuardableDelInventario() {
+        CleanSingleton.cleanMapa();
+
+        Inventario inventario = new Inventario();
+        IGuardable hacha = ConstructorHerramientas.construirHachaDeMadera();
+        inventario.agregarAlInventario(hacha);
+
+        IGuardable guardable = inventario.obtenerGuardable(0);
+        Assert.assertEquals(hacha, guardable);
     }
 }
