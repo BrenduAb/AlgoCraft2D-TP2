@@ -80,9 +80,35 @@ public class TestJugador {
 
         Mapa mapa = Mapa.getInstance();
 
-        Jugador jugador = new Jugador(new Posicion(1, 1), mapa);
+        Jugador jugador = new Jugador(new Posicion(2, 1), mapa);
 
-        jugador.moverHaciaLaDerecha();
+        jugador.moverHaciaLaIzquierda();
+
+        Assert.assertEquals(new Posicion(1, 1), jugador.obtenerPosicionActual());
+    }
+
+    @Test
+    public void PosicionoAlJugadorEnUnMapaYLoMuevoHaciaAbajo() {
+        CleanSingleton.cleanMapa();
+
+        Mapa mapa = Mapa.getInstance();
+
+        Jugador jugador = new Jugador(new Posicion(2, 2), mapa);
+
+        jugador.moverHaciAbajo();
+
+        Assert.assertEquals(new Posicion(2, 3), jugador.obtenerPosicionActual());
+    }
+
+    @Test
+    public void PosicionoAlJugadorEnUnMapaYLoMuevoHaciaArriba() {
+        CleanSingleton.cleanMapa();
+
+        Mapa mapa = Mapa.getInstance();
+
+        Jugador jugador = new Jugador(new Posicion(2, 2), mapa);
+
+        jugador.moverHaciArriba();
 
         Assert.assertEquals(new Posicion(2, 1), jugador.obtenerPosicionActual());
     }
