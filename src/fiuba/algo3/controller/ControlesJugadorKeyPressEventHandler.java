@@ -13,13 +13,16 @@ import fiuba.algo3.vista.VistaJugador;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+
+import java.nio.file.Paths;
 
 public class ControlesJugadorKeyPressEventHandler implements EventHandler<KeyEvent> {
     VistaJugador vistaJugador;
     Jugador jugador;
     MediaPlayer mediaPlayer;
+    private AudioClip sonidoCesped = new AudioClip(Paths.get("src/fiuba/algo3/vista/sonidos/cesped.mp3").toUri().toString());
+    private AudioClip sonidoGolpear = new AudioClip(Paths.get("src/fiuba/algo3/vista/sonidos/golpear.mp3").toUri().toString());
 
     public ControlesJugadorKeyPressEventHandler(VistaJugador vistaJugador, Jugador jugador) {
         this.vistaJugador = vistaJugador;
@@ -27,8 +30,9 @@ public class ControlesJugadorKeyPressEventHandler implements EventHandler<KeyEve
     }
 
     private void play_sound(){
-        AudioClip note = new AudioClip(this.getClass().getResource("file:src/fiuba/algo3/vista/sonidos/cesped.mp3").toString());
-        note.play();
+        //= new AudioClip(this.getClass().getResource(Paths.get("src/main/resources/stackoverflow/audio/alert.wav").toUri().toString()));
+        sonidoCesped.stop();
+        sonidoCesped.play();
     }
 
     @Override
@@ -58,6 +62,8 @@ public class ControlesJugadorKeyPressEventHandler implements EventHandler<KeyEve
             }
         } catch (CeldaOcupadaException ex) {
             try {
+                sonidoCesped.stop();
+                sonidoGolpear.play();
                 Mapa mapa = Mapa.getInstance();
                 Material material = (Material) mapa.obtenerCelda(pos).obtenerElemento();
                 mapa.chocarJugadorConMaterial(jugador, material);

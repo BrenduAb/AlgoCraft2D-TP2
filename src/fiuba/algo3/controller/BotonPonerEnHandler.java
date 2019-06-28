@@ -1,5 +1,6 @@
 package fiuba.algo3.controller;
 
+import fiuba.algo3.Excepciones.PosicionOcupadaException;
 import fiuba.algo3.model.Jugador.Inventario;
 import fiuba.algo3.model.Mapa.Posicion;
 import fiuba.algo3.model.Materiales.Material;
@@ -17,7 +18,7 @@ public class BotonPonerEnHandler implements EventHandler<ActionEvent> {
     MesaDeCrafteo mesa;
 
     public BotonPonerEnHandler(Inventario inventario, BotoneraInventarioViewModel botonera, Material material,
-                               VistaInventario vistaInventario,  MesaDeCrafteo mesa) {
+                               VistaInventario vistaInventario, MesaDeCrafteo mesa) {
         this.botonera = botonera;
         this.inventario = inventario;
         this.material = material;
@@ -27,12 +28,17 @@ public class BotonPonerEnHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        int posicionX = (int) botonera.columnaPonerMesa.getValue();
-        int posicionY = (int) botonera.filaPonerMesa.getValue();
-        Posicion posicion = new Posicion(posicionX - 1, posicionY - 1);
-        this.inventario.removerGuardable(material);
-        this.mesa.agregarMaterial(posicion, material);
-        this.botonera.botonPonerEn.setDisable(true);
-        this.vistaInventario.actualizar(this.inventario);
+        try {
+            int posicionX = (int) botonera.columnaPonerMesa.getValue();
+            int posicionY = (int) botonera.filaPonerMesa.getValue();
+            Posicion posicion = new Posicion(posicionX - 1, posicionY - 1);
+
+            this.mesa.agregarMaterial(posicion, material);
+            this.inventario.removerGuardable(material);
+            this.botonera.botonPonerEn.setDisable(true);
+            this.vistaInventario.actualizar(this.inventario);
+        } catch (PosicionOcupadaException ex) {
+
+        }
     }
 }

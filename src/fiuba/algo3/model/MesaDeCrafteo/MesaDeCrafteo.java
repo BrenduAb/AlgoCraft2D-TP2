@@ -1,5 +1,6 @@
 package fiuba.algo3.model.MesaDeCrafteo;
 
+import fiuba.algo3.Excepciones.PosicionOcupadaException;
 import fiuba.algo3.model.Herramientas.Herramienta;
 import fiuba.algo3.model.Mapa.Posicion;
 import fiuba.algo3.model.Materiales.Material;
@@ -24,6 +25,9 @@ public class MesaDeCrafteo {
     }
 
     public void agregarMaterial(Posicion posicion, Material material) {
+        if(this.mesa.get(posicion) != null){
+            throw new PosicionOcupadaException();
+        }
         mesa.put(posicion, material);
     }
 
