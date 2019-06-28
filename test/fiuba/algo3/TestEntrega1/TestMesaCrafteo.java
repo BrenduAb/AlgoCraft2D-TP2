@@ -1,5 +1,6 @@
 package fiuba.algo3.TestEntrega1;
 
+import fiuba.algo3.Excepciones.PosicionOcupadaException;
 import fiuba.algo3.model.Herramientas.Herramienta;
 import fiuba.algo3.model.Mapa.Posicion;
 import fiuba.algo3.model.Materiales.Madera;
@@ -190,5 +191,17 @@ public class TestMesaCrafteo {
         Material material2 = mesa.obtenerMaterial(new Posicion(0, 1));
         Material material3 = mesa.obtenerMaterial(new Posicion(1, 0));
         Assert.assertEquals(true, ((material1 == null) && (material2 == null) &&(material3 == null)));
+    }
+
+    @Test(expected = PosicionOcupadaException.class)
+    public void seAgregaOtroMaterialEnLaPosicionDondeYaHabiaYTiraPosicionOcupadaException() {
+        CrafteadorHerramientas crafter = new CrafteadorHerramientas();
+        MesaDeCrafteo mesa = new MesaDeCrafteo(crafter);
+
+        Madera madera1 = new Madera();
+        Madera madera2 = new Madera();
+
+        mesa.agregarMaterial(new Posicion(0, 0), madera1);
+        mesa.agregarMaterial(new Posicion(0, 0), madera2);
     }
 }

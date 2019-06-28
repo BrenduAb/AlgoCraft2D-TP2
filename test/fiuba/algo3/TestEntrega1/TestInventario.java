@@ -1,11 +1,8 @@
 package fiuba.algo3.TestEntrega1;
 
 import fiuba.algo3.model.Herramientas.ConstructorHerramientas;
-import fiuba.algo3.model.Herramientas.Hacha;
 import fiuba.algo3.model.Herramientas.Pico;
 import fiuba.algo3.model.Jugador.Inventario;
-import fiuba.algo3.model.Materiales.Madera;
-import fiuba.algo3.model.Materiales.Material;
 import org.junit.Assert;
 import org.junit.Test;
 
