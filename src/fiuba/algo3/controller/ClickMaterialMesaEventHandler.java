@@ -15,15 +15,12 @@ public class ClickMaterialMesaEventHandler implements EventHandler<MouseEvent> {
     Material material;
     MesaDeCrafteo mesaDeCrafteo;
 
-    public ClickMaterialMesaEventHandler(Inventario inventario,
-                                         Material material,
-                                         MesaDeCrafteo mesaDeCrafteo,
-                                         VistaInventario vistaInventario,
-                                         Posicion posicion) {
-        this.vistaInventario = vistaInventario;
-        this.inventario = inventario;
+    public ClickMaterialMesaEventHandler(Material material, Posicion posicion, VistaInventario vista) {
+
+        this.vistaInventario = vista;
+        this.inventario = vista.obtenerJuego().obtenerJugador().obtenerInventario();
         this.material = material;
-        this.mesaDeCrafteo = mesaDeCrafteo;
+        this.mesaDeCrafteo = vista.obtenerJuego().obtenerMesaDeCrafteo();
         this.posicion = posicion;
     }
 
@@ -31,6 +28,6 @@ public class ClickMaterialMesaEventHandler implements EventHandler<MouseEvent> {
     public void handle(MouseEvent event) {
         this.inventario.agregarAlInventario(material);
         this.mesaDeCrafteo.removerMaterial(posicion);
-        this.vistaInventario.actualizar(this.inventario);
+        this.vistaInventario.actualizar();
     }
 }

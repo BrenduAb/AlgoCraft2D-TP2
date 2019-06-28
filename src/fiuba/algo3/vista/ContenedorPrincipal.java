@@ -1,7 +1,8 @@
 package fiuba.algo3.vista;
 
-import fiuba.algo3.model.Jugador.Jugador;
 import fiuba.algo3.controller.BotonInventarioHandler;
+import fiuba.algo3.model.Juego;
+import fiuba.algo3.model.Jugador.Jugador;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -21,28 +22,22 @@ public class ContenedorPrincipal extends BorderPane {
     VistaInventario vistaInventario;
     GridPane gridPane;
     VBox contenedorCentral;
-
     Stage stage;
 
-    public ContenedorPrincipal(Stage stage, Jugador Jugador) {
-        this.setControles(stage, Jugador);
+    public ContenedorPrincipal(Stage stage, Juego juego) {
         this.setMenu(stage);
-        this.setCentro(Jugador);
+        this.setCentro(juego.obtenerJugador());
         this.setConsola();
-        this.setBotonera(Jugador);
+        this.setBotonera(juego);
         this.stage = stage;
     }
 
-    private void setControles(Stage stage, Jugador jugador) {
-
-    }
-
-    private void setBotonera(Jugador Jugador) {
+    private void setBotonera(Juego juego) {
 
         Button botonMostrarInventario = new Button();
         botonMostrarInventario.setText("Mostrar inventario");
-        this.vistaInventario = new VistaInventario(stage,Jugador);
-        BotonInventarioHandler moveButtonHandler = new BotonInventarioHandler(vistaInventario, Jugador);
+        this.vistaInventario = new VistaInventario(stage,juego);
+        BotonInventarioHandler moveButtonHandler = new BotonInventarioHandler(vistaInventario);
         botonMostrarInventario.setOnAction(moveButtonHandler);
 
         VBox contenedorVertical = new VBox(botonMostrarInventario);
@@ -74,7 +69,6 @@ public class ContenedorPrincipal extends BorderPane {
 
     private void setConsola() {
 
-        // TODO cambiar por el modelo de Consola...
         Label etiqueta = new Label();
         etiqueta.setText("Hola!... me llamo Manu. ¡Vamos a jugar!");
         etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
