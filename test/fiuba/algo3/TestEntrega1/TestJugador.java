@@ -274,4 +274,20 @@ public class TestJugador {
         IGuardable guardable = inventario.obtenerGuardable(0);
         Assert.assertEquals(hacha, guardable);
     }
+
+    @Test
+    public void SeRemueveGuardableDelInventario() {
+        CleanSingleton.cleanMapa();
+
+        Inventario inventario = new Inventario();
+        IGuardable madera = new Madera();
+        inventario.agregarAlInventario(madera);
+
+        int cantidadDeGuardables = inventario.obtenerCantidadDeObjetos();
+        Assert.assertEquals(1, cantidadDeGuardables);
+
+        inventario.removerGuardable(madera);
+        cantidadDeGuardables = inventario.obtenerCantidadDeObjetos();
+        Assert.assertEquals(0, cantidadDeGuardables);
+    }
 }

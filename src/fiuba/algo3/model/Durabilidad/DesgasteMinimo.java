@@ -10,7 +10,7 @@ public class DesgasteMinimo extends Desgaste {
     @Override
     public void desgastar(int fuerza) {
         this.durabilidad -= this.durabilidad * 0.1;
-        if (this.durabilidad <= 0) {
+        if (this.durabilidad <= 0.1) {
             throw new HerramientaRotaException();
         }
     }

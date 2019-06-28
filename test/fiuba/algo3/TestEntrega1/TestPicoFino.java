@@ -123,7 +123,7 @@ public class TestPicoFino {
     }
 
     @Test
-    public void picoFinoSeUsaContraCualquierMaterial87VecesYNoSeRompe(){
+    public void picoFinoSeUsaContraCualquierMaterial88VecesYNoSeRompe(){
         PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
         Material metal = new Metal();
 
@@ -137,18 +137,15 @@ public class TestPicoFino {
         Assert.assertNotSame(0, picoFino.obtenerDurabilidad());
     }
 
-    /*@Test(expected = HerramientaRotaException.class)
-    public void picoFinoSeUsaContraCualquierMaterial50VecesYSeRompe(){
+    @Test(expected = HerramientaRotaException.class)
+    public void picoFinoSeUsaContraCualquierMaterial88VecesYSeRompe(){
         PicoFino picoFino = ConstructorHerramientas.construirPicoFino();
-        double dura = picoFino.obtenerDurabilidad();
         Material madera = new Madera();
 
-        for(int i = 1; i < 500000000; i++) {
+        for(int i = 1; i <= 88; i++) {
             picoFino.usarContra(madera);
         }
 
-
-        // FALTA PROBAR EL DESGASTE MINIMO
-    }*/
+    }
 
 }
