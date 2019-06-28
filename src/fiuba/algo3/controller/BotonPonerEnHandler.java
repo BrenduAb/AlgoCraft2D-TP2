@@ -34,8 +34,7 @@ public class BotonPonerEnHandler implements EventHandler<ActionEvent> {
             int posicionY = (int) botonera.filaPonerMesa.getValue();
             Posicion posicion = new Posicion(posicionX - 1, posicionY - 1);
 
-            this.mesa.agregarMaterial(posicion, material);
-            this.inventario.removerGuardable(material);
+            this.vistaInventario.obtenerJuego().agregarMaterialEnMesa(posicion, material);
             this.botonera.botonPonerEn.setDisable(true);
             this.vistaInventario.actualizar();
         } catch (PosicionOcupadaException ex) {
