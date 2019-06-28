@@ -87,4 +87,8 @@ public class Jugador implements IOcupable {
     public Inventario obtenerInventario() {
         return this.inventario;
     }
+
+    public void removerGuardable(Material material) {
+        this.inventario.removerGuardable(material);
+    }
 }

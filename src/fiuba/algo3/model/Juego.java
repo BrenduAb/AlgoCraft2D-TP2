@@ -3,10 +3,7 @@ package fiuba.algo3.model;
 import fiuba.algo3.model.Jugador.Jugador;
 import fiuba.algo3.model.Mapa.Mapa;
 import fiuba.algo3.model.Mapa.Posicion;
-import fiuba.algo3.model.Materiales.Diamante;
-import fiuba.algo3.model.Materiales.Madera;
-import fiuba.algo3.model.Materiales.Metal;
-import fiuba.algo3.model.Materiales.Piedra;
+import fiuba.algo3.model.Materiales.*;
 import fiuba.algo3.model.MesaDeCrafteo.CrafteadorHerramientas;
 import fiuba.algo3.model.MesaDeCrafteo.MesaDeCrafteo;
 
@@ -77,5 +74,8 @@ Juego {
         return this.mesa;
     }
 
-
+    public void agregarMaterialEnMesa(Posicion posicion, Material material) {
+        this.mesa.agregarMaterial(posicion, material);
+        this.jugador.removerGuardable(material);
+    }
 }
